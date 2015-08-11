@@ -104,3 +104,13 @@ Exporting the virtualbox image as an appliance.
 ## 2015-06-22
 
 John asked me to set the boot screen timeout to nothing so you have to choose.
+
+## 2015-08-11
+
+John asked me to have flamethrower(multicast) cloning working be the end of next
+week.  I found a [really good
+article](http://oakdome.com/k5/tutorials/computer-cloning/free-computer-cloning-step-4-2.php)
+on clonezilla multicast restore.  It seems pretty simple.  The first thing is
+snapshotting our current clonezilla server image.  Next I need to find a test
+client.  I'm using one of the Thinkpad T61's on the desk here.  John asked me to
+save the current image and use that for my restore test.
