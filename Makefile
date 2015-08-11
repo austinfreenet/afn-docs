@@ -6,7 +6,7 @@ all: $(HTML)
 %.html: %.md
 	markdown $< > $@
 
-publish:
+publish: $(HTML)
 	rsync -av $(HTML) hw:/var/www/fattuba.com/afn/
 
 clean:
