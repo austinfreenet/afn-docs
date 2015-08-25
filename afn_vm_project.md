@@ -296,6 +296,10 @@ it](http://askubuntu.com/questions/504652/adding-nopasswd-in-etc-sudoers-doesnt-
 
 ## 2015-08-25
 
-In order to get cloning working between the clonzilla server vm and a test
-client vm, I had to set `bridge_fd 2` in `/etc/network/interfaces`.  0 was "out
-of bounds".  Now I can PXE boot a test client VM from the clonezilla server.
+In order to get cloning working between the clonzilla server vm and a
+test client vm, I had to set `bridge_fd 2` in `/etc/network/interfaces`.
+0 was "out of bounds".  Now I can PXE boot a test client VM from the
+clonezilla server.
+
+I also set the desktop wallpaper for root so that a logged in user knows
+they're root.
