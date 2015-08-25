@@ -293,3 +293,9 @@ KVM](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3456) that is fixed
 in the latest apt-get upgrade.  I need to figure out why NOPASSWD isn't working
 in sudoers.  I think I [got
 it](http://askubuntu.com/questions/504652/adding-nopasswd-in-etc-sudoers-doesnt-work).  I increased the clonezilla VM's processor allocation from 1 to 4 and did the same for disk-editor.  Since gparted is started with policy kit and not sudo, I had to add a policy to [not require password auth](http://askubuntu.com/questions/98006/how-do-i-prevent-policykit-from-asking-for-a-password).  I set gparted to start upon login.
+
+## 2015-08-25
+
+In order to get cloning working between the clonzilla server vm and a test
+client vm, I had to set `bridge_fd 2` in `/etc/network/interfaces`.  0 was "out
+of bounds".  Now I can PXE boot a test client VM from the clonezilla server.

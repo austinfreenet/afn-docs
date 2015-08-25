@@ -114,3 +114,11 @@ on clonezilla multicast restore.  It seems pretty simple.  The first thing is
 snapshotting our current clonezilla server image.  Next I need to find a test
 client.  I'm using one of the Thinkpad T61's on the desk here.  John asked me to
 save the current image and use that for my restore test.
+
+## 2015-08-25
+
+I don't have a physical client to test so I need to setup a test client
+VM.  In order to get cloning working between the clonzilla server vm and a
+test client vm, I had to set `bridge_fd 2` in `/etc/network/interfaces`.
+0 was "out of bounds".  Now I can PXE boot a test client VM from the
+clonezilla server.
