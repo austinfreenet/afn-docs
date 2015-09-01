@@ -122,3 +122,29 @@ VM.  In order to get cloning working between the clonzilla server vm and a
 test client vm, I had to set `bridge_fd 2` in `/etc/network/interfaces`.
 0 was "out of bounds".  Now I can PXE boot a test client VM from the
 clonezilla server.
+
+## 2015-09-01
+
+Now we need to figure out this multicast stuff.  Running `drblsrv -i` to
+hopefully configure multicast.  I think `dcs` is what we need to run.  So `dcs`
+worked.  That's definitely the command to run to set up multicast.  However it
+blows away our custom menu options.  So the question is: how do we maintain our
+custom menu options while allowing for multicast?  Here's the multicast menu
+option that got created:
+
+    label Clonezilla-live
+      MENU DEFAULT
+      # MENU HIDE
+      MENU LABEL Clonezilla: multicast restore 2015-07-23-lenovo-T400 to disk sda
+      # MENU PASSWD
+      KERNEL Clonezilla-live-vmlinuz
+      APPEND initrd=Clonezilla-live-initrd.img boot=live union=aufs noswap noprompt nolocales netboot=nfs nfsroot=192.168.1.81:/tftpboot/node_root/clonezilla-live/ ocs_server="192.168.1.81" keyboard-layouts="NONE" locales="en_US.UTF-8" ocs_daemonon="ssh" ocs_prerun="mount -t nfs 192.168.1.81:/home/partimag /home/partimag/" live-config ocs_live_keymap="NONE" ocs_lang="en_US.UTF-8" ocs_live_run="ocs-sr -l en_US.UTF-8  -g auto -e1 auto -e2 -r --clone-hidden-data -p reboot --mcast-port 2232 multicast_restoredisk 2015-07-23-lenovo-T400 sda"
+      IPAPPEND 1
+      TEXT HELP
+      Clonezilla Live 2.2.3-25-amd64 runs on RAM
+      ENDTEXT
+
+
+It looks like `dcs` still uses 192.168.8.1 for the ipaddress of the server in
+`/tftpboot/nbi_img/pxelinux.cfg/default`.  So if you just go in and edit any
+192.168.8.1 address to say 192.168.1.81 instead, it'll work.
