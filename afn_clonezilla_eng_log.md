@@ -148,3 +148,34 @@ option that got created:
 It looks like `dcs` still uses 192.168.8.1 for the ipaddress of the server in
 `/tftpboot/nbi_img/pxelinux.cfg/default`.  So if you just go in and edit any
 192.168.8.1 address to say 192.168.1.81 instead, it'll work.
+
+## 2015-09-15
+
+John has been having some issues with the server in save/restore unicast mode.
+Let's take a look.  It turns out that we didn't do anything with the `-q
+ntfsclone` option yet so that's not in play.  I did a test restore of an image
+to one of the Thinkpads and it worked well.  I got around 1.35 GiB/min.
+I'll ask John to see what he wants to do next.  John wants to test
+unicast restores on 3 laptops simultaneously.
+
+New idea: Use one clonezilla boot server VM for each network and put the images
+on a separate multi-homed NFS server VM.  Well, it looks like you [can have a
+multi-homed drbl server](http://drbl.org/installation/01-prepare-server.php).  So maybe we should just do that.
+
+Anyway, the test unicast went fine.  So now I'm trying to figure out how to
+change the dcs IP from 192.168.8.1 to 192.168.1.81.  So I ran this command to
+find files that might need to be changed:
+
+    root@clonezilla:~# grep -r 192.168.8.1 /tftpboot/ /etc | grep -v
+    192.168.8.10 | cut -f1 -d: | sort | uniq | grep -v drblsave | grep
+    -v bak | grep -v .orig
+    /etc/dhcp/dhcpd.conf
+    /tftpboot/node_root/etc/dhcp/dhcpd.conf
+    /tftpboot/node_root/etc/diskless-image/config
+    /tftpboot/node_root/etc/hosts
+    /tftpboot/node_root/etc/network/interfaces
+
+I didn't edit the dhcpd.conf files since dhcpd is turned off.  So let's try
+running dcs and see what happens.  So that seems to have worked.  Although I
+edited the files above I believe the file that mattered is
+`/tftpboot/node_root/etc/diskless-image/config`.
