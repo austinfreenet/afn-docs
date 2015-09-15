@@ -166,9 +166,7 @@ Anyway, the test unicast went fine.  So now I'm trying to figure out how to
 change the dcs IP from 192.168.8.1 to 192.168.1.81.  So I ran this command to
 find files that might need to be changed:
 
-    root@clonezilla:~# grep -r 192.168.8.1 /tftpboot/ /etc | grep -v
-    192.168.8.10 | cut -f1 -d: | sort | uniq | grep -v drblsave | grep
-    -v bak | grep -v .orig
+    root@clonezilla:~# grep -r 192.168.8.1 /tftpboot/ /etc | grep -v 192.168.8.10 | cut -f1 -d: | sort | uniq | grep -v drblsave | grep -v bak | grep -v .orig
     /etc/dhcp/dhcpd.conf
     /tftpboot/node_root/etc/dhcp/dhcpd.conf
     /tftpboot/node_root/etc/diskless-image/config
