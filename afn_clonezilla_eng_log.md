@@ -177,3 +177,26 @@ I didn't edit the dhcpd.conf files since dhcpd is turned off.  So let's try
 running dcs and see what happens.  So that seems to have worked.  Although I
 edited the files above I believe the file that mattered is
 `/tftpboot/node_root/etc/diskless-image/config`.
+
+So to summarize here is how to set up a multicast restore:
+
+   1. On the clonezilla server VM, run `dcs`
+   2. `All  Select all the clients`
+   3. `clonezilla-start Start_clonezilla_mode`
+   4. `Beginner Beginner mode: Accept the default options`
+   5. `restore-disk    Restore an image onto the compute`
+   6. `-p reboot    Reboot client when the clone finishes`
+   7. Choose the image to restore
+   8. `sda  disk(sd)_disk(a)`
+   9. `multicast multicast restore`
+   10. `clients-to-wait   Set the number of clients to clone`
+   11. Set the number of clients you're restoring.
+   12. Press enter through the warnings
+   13. PXE all your clients and select the multicast option
+   14. Once all the clients are at the "wait" screen, cloning will begin.
+
+So next is the [ntfsclone
+option](http://allthatnetwork.blogspot.com/2012/10/clonezilla-ocs-sr-options.html).
+Let's add that.  I've add the `-q` option to both the save and restore
+boot menu items in `/tftpboot/nbi_img/pxelinux.cfg/default`.  I'm not
+sure if we have to add it to both but I don't think it can hurt.
