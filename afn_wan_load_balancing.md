@@ -71,3 +71,27 @@ I'm installing tcpdump so I can see packets going out each interface.
 It totally works!  I'm pinging from my laptop and I've seen some ping
 sessions go out eth0 and others go out eth1.  Plus I'm able to web surf
 and ssh.
+
+## 2015-9-29
+
+I'm back on this router project today.  I'm running an `apt-get upgrade`.  Ok,
+I'm connected from my laptop to the gateway via eth4.  I don't have dhcpd
+running on the gw so I have a static IP set on my laptop.  I've verified that
+our load balancing still works from last time so let's setup
+[failover](http://shorewall.net/MultiISP.html#LinkMonitor).
+
+Let's test reboot first.  So shorewall doesn't come up on boot yet.
+After boot I had to do the following:
+
+   1. `/etc/init.d/shorewall start`
+   2. `ifconfig eth4 10.0.0.1`
+   3. `ifconfig eth4 up`
+
+That all works fine.  We can fix reboot later.  It looks like
+[LSM](http://lsm.foobar.fi/) [isn't
+packaged for Debian](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=518165)
+so let's compile it from source.  I'm doing an `apt-get install
+build-essential`.  Let's make a quick Debian package out of it using
+`checkinstall`.  I changed all references to `/usr/libexec` to `/usr/lib` in the
+lsm sources because `/usr/lib` is in the FHS and libexec isn't.  Ok so now lsm
+is installed.  Next we need to configure it.
