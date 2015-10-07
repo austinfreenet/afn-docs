@@ -95,3 +95,12 @@ build-essential`.  Let's make a quick Debian package out of it using
 `checkinstall`.  I changed all references to `/usr/libexec` to `/usr/lib` in the
 lsm sources because `/usr/lib` is in the FHS and libexec isn't.  Ok so now lsm
 is installed.  Next we need to configure it.
+
+## 2015-10-07
+
+Ok, so today let's get LSM configured.  Let's add varables for each wan
+interface to `/etc/shorewall/params` so that we can reference them in the LSM
+configs.  Ok, I have all the files setup.  Now I'm creating directories that lsm
+needs.  So when an interface goes down, LSM seems to work but when it comes back
+up it doesn't get put back into the rotation.  I'll have to look into that next
+time.
