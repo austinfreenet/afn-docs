@@ -104,3 +104,9 @@ configs.  Ok, I have all the files setup.  Now I'm creating directories that lsm
 needs.  So when an interface goes down, LSM seems to work but when it comes back
 up it doesn't get put back into the rotation.  I'll have to look into that next
 time.
+
+## 2015-10-13
+
+Well, it turns out that failback is working, it just takes a bit of time.
+I think it's time for a demo.  It takes quite a while for an interface to be
+added back into the rotation(~ 4 minutes or so).
