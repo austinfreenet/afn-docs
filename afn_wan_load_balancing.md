@@ -110,3 +110,13 @@ time.
 Well, it turns out that failback is working, it just takes a bit of time.
 I think it's time for a demo.  It takes quite a while for an interface to be
 added back into the rotation(~ 4 minutes or so).
+
+## 2015-11-03
+
+Let's get the UI up and running.  So [webmin](https://10.0.0.1:10000/)
+is up and running with the shorewall module.  I also need to get shorewall
+starting on boot.  Let's reboot and check the log.  So it turns out that
+everything was starting correctly except for the LAN interface.  So I added a
+stanza to `/etc/network/interfaces` for eth4 and rebooted.  Everything came up
+fine.  So I've backed up `/etc/` as a tarball on my laptop.  Next time
+let's try to add/remove interfaces using the GUI.
