@@ -120,3 +120,11 @@ everything was starting correctly except for the LAN interface.  So I added a
 stanza to `/etc/network/interfaces` for eth4 and rebooted.  Everything came up
 fine.  So I've backed up `/etc/` as a tarball on my laptop.  Next time
 let's try to add/remove interfaces using the GUI.
+
+So when an interface is added back after remove it, the SNAT rule:
+
+    Chain eth0_masq (1 references)
+    target     prot opt source               destination
+    SNAT       all  --  10.0.0.0/24          anywhere             to:192.168.0.102
+
+...doesn't get put back into place.  We'll have to look into this.
