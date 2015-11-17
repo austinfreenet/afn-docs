@@ -128,3 +128,30 @@ So when an interface is added back after remove it, the SNAT rule:
     SNAT       all  --  10.0.0.0/24          anywhere             to:192.168.0.102
 
 ...doesn't get put back into place.  We'll have to look into this.
+
+## 2015-11-10
+
+There was a fat finger in `/var/lib/shorewall/firewall` so I fixed that.  Now
+the firewall script should work fine.  It turns out that that firewall script is
+compiled at start.  The fat finger was really in `/etc/shorewall/lib.private` so
+I fixed it there.  Let's reboot to test.  Well the firewall script runs fine now
+but the SNAT rules still don't get put into place.
+
+Ok so I changed the 3rd column in `/etc/shorewall/masq` from detect to
+blank(nothing).  That seems to make shorewall come up at boot just fine.
+
+Well after a bunch of plug/unplug tests, the firewall turned itself off
+altogether and no packets were passing.  I'll have to figure out why.
+
+## 2015-11-17
+
+Well it turns out that the north network(192.168.1.0/24) is dropping packets.
+So John set me up with a connection to the south network(192.168.2.0/24)
+instead.  I swapped out the config in `/etc/shorewall` and things seem to be
+humming along.  Now let's play around with our MASQ problem.  Well I can't seem
+to recreate the MASQ problem by ifdown'ing.  Let's try unplugging the cable.
+
+I changed the 3rd column in `/etc/shorewall/masq` from black back
+to detect to see if that fixes my packet loss issue.  It doesn't
+look like it.  It seems that the packet loss only happens on the
+south(192.168.2.0/24) network.
