@@ -155,3 +155,22 @@ I changed the 3rd column in `/etc/shorewall/masq` from black back
 to detect to see if that fixes my packet loss issue.  It doesn't
 look like it.  It seems that the packet loss only happens on the
 south(192.168.2.0/24) network.
+
+## 2015-11-24
+
+Ok, so let's solve this packet loss issue.  So if I ping from the router I get
+packet loss and if I ping from a LAN client I get packet loss.  If I stop
+shorewall and ping from the router there's no packet loss.  It looks like
+there's no packet loss if I use the staff network with shorewall on.  Let's
+switch back from north to south and see if that fixes things.  Let's add the
+south to eth2.  So I've added the south network to eth2.  I've also changed the
+lsm ping targets to be the far side of the pipe on each connection.  I had to
+add static routes vi `/etc/network/interfaces` for each far side then change the
+ping targets in `/etc/shorewall/lib.private`.  Now it looks like eth1(WAN2) is
+being added and removed based on packet loss as appropriate.
+
+After re-reading the shorwall multiisp guide, it seems like track is only used
+for providers with servers hosted on that IP.  We should use balance on all the
+providers.  Ok, removing track breaks SNAT so I added it back.
+
+Today it looks like only the north network has packet loss.
