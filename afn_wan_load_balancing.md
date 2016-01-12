@@ -174,3 +174,17 @@ for providers with servers hosted on that IP.  We should use balance on all the
 providers.  Ok, removing track breaks SNAT so I added it back.
 
 Today it looks like only the north network has packet loss.
+
+
+## 2016-1-5
+
+Pulled outage reports from lsm emails and sent them to John
+
+
+## 2016-1-12
+
+Routing isn't working.  Looking in `/var/log/syslog` it looks like lsm crapped
+out.  I've restarted shorewall which fixed the issue.  Perhaps we should replace
+lsm with nagios?
+
+Let's setup nagios to monitor the WAN IPs.
