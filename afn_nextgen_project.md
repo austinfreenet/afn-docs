@@ -24,7 +24,7 @@ and
 [configured](https://help.ubuntu.com/community/AptGet/Howto#APT_configuration_file_method) the nextgen image to use it.  I also installed
 firmware-realtek.  I'm saving the image via clonezilla again.
 
-## 2016-6-24
+## 2016-5-24
 
 Today, I'm back on the nextgen project again.  Let's get the image back on the
 client.  Ok so I had to switch the monitor attached to the KVM to analog mode
