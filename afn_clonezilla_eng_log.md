@@ -200,3 +200,11 @@ option](http://allthatnetwork.blogspot.com/2012/10/clonezilla-ocs-sr-options.htm
 Let's add that.  I've add the `-q` option to both the save and restore
 boot menu items in `/tftpboot/nbi_img/pxelinux.cfg/default`.  I'm not
 sure if we have to add it to both but I don't think it can hurt.
+
+## 2016-5-24
+
+When trying to save the image of our [load balancing router](afn_wan_load_balancing.html), so I can
+use that client for the [nextgen project](afn_nextgen_project.html), clonezilla failed to mount NFS.
+For some reason the PXE booted client NFS mount fails.  I removed IPAPPEND
+from `/tftpboot/nbi_img/pxelinux.cfg/default` and it mounts fine now.
+That's probably because there's multiple ethernet adapters in this client.
