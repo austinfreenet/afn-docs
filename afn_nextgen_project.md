@@ -23,3 +23,17 @@ lightdm.  The I need to install a Windows 7 KVM VM.  I've setup an apt proxy VM
 and
 [configured](https://help.ubuntu.com/community/AptGet/Howto#APT_configuration_file_method) the nextgen image to use it.  I also installed
 firmware-realtek.  I'm saving the image via clonezilla again.
+
+## 2016-6-24
+
+Today, I'm back on the nextgen project again.  Let's get the image back on the
+client.  Ok so I had to switch the monitor attached to the KVM to analog mode
+and slot 4 to see the VM server.  I've started the clonezilla VM so I can pull
+the client image from it.  John said I could use the client machine on the top
+left for testing.  Ok so that client is our dev machine for our [load balancing
+router](afn_wan_load_balancing.html).  Let's clone that so we don't lose our
+work.  For some reason the PXE booted client NFS mount fails.  I removed
+IPAPPEND from `/tftpboot/nbi_img/pxelinux.cfg/default` and it mounts fine now.
+That's probably because there's multiple ethernet adapters in this client.
+I left a note in the [clonezilla doc](afn_clonezilla_eng_log.html#section-13)
+about this.

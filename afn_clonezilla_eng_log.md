@@ -208,3 +208,16 @@ use that client for the [nextgen project](afn_nextgen_project.html), clonezilla 
 For some reason the PXE booted client NFS mount fails.  I removed IPAPPEND
 from `/tftpboot/nbi_img/pxelinux.cfg/default` and it mounts fine now.
 That's probably because there's multiple ethernet adapters in this client.
+
+Well perhaps our custom initrd got stomped and that's why IPAPPEND doesn't
+work any longer.  I went into `~/clonezilla_live_initrd_edit` and ran:
+
+    export UNZIP=1
+    rm -rf Clonezilla-live
+    make Clonezilla-live
+    diff -Naur Clonezilla-live/lib/live/boot/9990-networking.sh Clonezilla-live_new/lib/live/boot/9990-networking.sh
+
+After this clone completes we should try putting our custom initrd back
+in place and PXE booting the client to see if NFS mounts properly then.
+Also it looks like we're unzipping img.orig while the one that gets used
+during boot is img.  We need to look into that.
