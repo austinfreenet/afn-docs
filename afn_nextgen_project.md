@@ -18,7 +18,7 @@ the client.
 
 ## 2015-5-19
 
-The image is back onto the client so not I'm installed XFCE, virt-manager and
+The image is back onto the client so now I'm installed XFCE, virt-manager and
 lightdm.  The I need to install a Windows 7 KVM VM.  I've setup an apt proxy VM
 and
 [configured](https://help.ubuntu.com/community/AptGet/Howto#APT_configuration_file_method) the nextgen image to use it.  I also installed
