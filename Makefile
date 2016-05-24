@@ -4,7 +4,7 @@ HTML=$(MARKDOWN:%.md=%.html)
 all: $(HTML)
 
 %.html: %.md
-	markdown $< > $@
+	pandoc -i $< -o $@
 
 publish: $(HTML)
 	rsync -av $(HTML) hw:/var/www/fattuba.com/afn/
