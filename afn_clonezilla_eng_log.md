@@ -226,3 +226,5 @@ during boot is img.  We need to look into that.
 
 So I'm restoring 2016-05-11-DomainClient40gb to the HP tower on the
 wire rack.  John said that he's seen errors with that restore.
+Ok, so that restore went off without a hitch, booted fine and I was able to
+login using the standard admin password.
