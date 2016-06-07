@@ -221,3 +221,8 @@ After this clone completes we should try putting our custom initrd back
 in place and PXE booting the client to see if NFS mounts properly then.
 Also it looks like we're unzipping img.orig while the one that gets used
 during boot is img.  We need to look into that.
+
+# 2016-6-7
+
+So I'm restoring 2016-05-11-DomainClient40gb to the HP tower on the
+wire rack.  John said that he's seen errors with that restore.
