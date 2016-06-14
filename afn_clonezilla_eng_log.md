@@ -222,9 +222,21 @@ in place and PXE booting the client to see if NFS mounts properly then.
 Also it looks like we're unzipping img.orig while the one that gets used
 during boot is img.  We need to look into that.
 
-# 2016-6-7
+## 2016-6-7
 
 So I'm restoring 2016-05-11-DomainClient40gb to the HP tower on the
 wire rack.  John said that he's seen errors with that restore.
 Ok, so that restore went off without a hitch, booted fine and I was able to
 login using the standard admin password.
+
+## 2016-6-14
+
+Ok so John thinks the issue may be with the network save.  So let's
+
+   1. verify the currently installed image on the HP Tower in the rack
+   2. save that image via the network
+   3. restore that same image
+
+So the current image on the client is good.  It boots into Windows and I'm able
+to login.  Now let's save the image via the network.  Ok so the image save is
+going.  It's definitely using ntfsclone which will take a bit longer.
