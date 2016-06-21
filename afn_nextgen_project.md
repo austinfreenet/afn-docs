@@ -37,3 +37,9 @@ IPAPPEND from `/tftpboot/nbi_img/pxelinux.cfg/default` and it mounts fine now.
 That's probably because there's multiple ethernet adapters in this client.
 I left a note in the [clonezilla doc](afn_clonezilla_eng_log.html#section-13)
 about this.
+
+## 2016-6-21
+
+I'm going to use the HP client machine on the wire rack as the
+nextgen test client.  I'm using the clonezilla server to restore
+`nextgen-dev-2016-5-19-16-img`.
