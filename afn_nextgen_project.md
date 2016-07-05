@@ -77,10 +77,10 @@ Ok so the conversion from ova to qcow2 went well.  I'm booting the Windows 7
 guest now.  I'm uninstalling the VirtualBox guest utils since we're not going to
 use them.  Ok so here some stuff we need to test:
 
-   * ~networking~
+   * ~~networking~~
    * USB pass through
    * sound
-   * ~cdrom~
+   * ~~cdrom~~
 
 Ok, I've added /dev/sr0 as a CDROM device.  I'm out of time for today so let's
 save the client image to clonezilla as `nextgen-dev-2016-07-05-16-img`.
