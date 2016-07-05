@@ -43,3 +43,44 @@ about this.
 I'm going to use the HP client machine on the wire rack as the
 nextgen test client.  I'm using the clonezilla server to restore
 `nextgen-dev-2016-5-19-16-img`.
+
+## 2016-7-5
+
+The Debian username/password is user:user.  The current term is xterm.
+Yuck.  Let's install xfce4-terminal.  The root password is the normal AFN
+admin/root password.  I need to install sudo also.  I don't have the apt proxy
+running so let's disable it for now on the client.  So my experiments with
+VirtualBox at my church went well.  I have 2 issues.
+
+   1. The USB devices sometimes don't passthrough (you have to have them plugged
+      in before boot)
+   2. The Vbox bridging doesn't work with some DHCP servers.
+
+So let's try KVM instead.  I've
+[added](https://wiki.debian.org/KVM#Installation) `user` to the `kvm`
+and `libvirt` groups.  I'm getting a warning that says "KVM is not
+available" when I try to create a new VM.  Let's `apt-get install qemu-kvm
+libvirt-bin` to see if that fixes the issue.  No joy.  I reboot.  The boot
+message says "kvm: disabled by bios".  Let's try to enable it in the BIOS.  So
+enabling "Virtual Machine Technology" in the BIOS fixed the warning message.
+
+Ok so now let's get a Windows 7 image working.  I'm rsync'ing an image from my
+Laptop over.  The client needs ssh and rsync installed.  The image is
+tranferring now.  Install iftop to watch the speed.
+
+Well just importing the .ova file didn't work.  Let's Google.  Let's try
+[this](http://wiki.hackzine.org/sysadmin/kvm-import-ova.html).  While that's
+converting, let's get [NTP
+working](https://wiki.debian.org/DateTime#Set_the_time_automatically).
+
+Ok so the conversion from ova to qcow2 went well.  I'm booting the Windows 7
+guest now.  I'm uninstalling the VirtualBox guest utils since we're not going to
+use them.  Ok so here some stuff we need to test:
+
+   * ~networking~
+   * USB pass through
+   * sound
+   * ~cdrom~
+
+Ok, I've added /dev/sr0 as a CDROM device.  I'm out of time for today so let's
+save the client image to clonezilla as `nextgen-dev-2016-07-05-16-img`.
