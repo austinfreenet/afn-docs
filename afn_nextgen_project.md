@@ -84,3 +84,33 @@ use them.  Ok so here some stuff we need to test:
 
 Ok, I've added /dev/sr0 as a CDROM device.  I'm out of time for today so let's
 save the client image to clonezilla as `nextgen-dev-2016-07-05-16-img`.
+
+## 2016-7-12
+
+Let's test sound first.  pulseaudio isn't running and alsa utils aren't
+installed.  Let's avoid pulse for now.  `apt-get install alsa-utils`.  I ran
+`alsamixer` and turned up master.  Then I ran `aplay` on a test wave from
+`/usr/share` and sound came out my headphones.  Now let's see if sound works
+from the win7 guest.  When starting the guest machine, I got a network error and
+the guest refused to start.  I had to go into virtual machine manager and start
+the virtual network.
+
+Note: Let's figure out how to hard-set the guest's MAC so that Windows licensing
+won't freak out.
+
+So ich6 emulation doesn't seem to work.  Let's try AC97.  No joy trying to
+install the drivers from Realtek.  Let's rollback.  Argh.  I forgot to snapshot
+the VM.  Let's reinstall from our import and make sure and take a snapshot this
+time. I created a snapshot called "fresh clone".  So I uninstalled the
+virtualbox guest extensions.  I set the display to a higher resolution and I
+disconnected the vbox network drive that doesn't exist anymore.   Time to take
+another snapshot.
+
+I'm following [this
+guide](http://froebe.net/blog/2013/02/10/howto-windows-7-32bit-and-64bit-sound-with-kvm-libvirt-and-the-spice-client-2/)
+to get the sound to work.  I've installed the Redhat QXL windows display driver.
+I still can't get the AC97 sound driver to install so let's run Windows update.
+Well I've got the dreaded super slow [Windows 7 update
+issue](https://www.grc.com/sn/sn-560.htm) so now I'm
+downloading the new [Windows 7 convenience
+rollup](http://www.howtogeek.com/255435/how-to-update-windows-7-all-at-once-with-microsofts-convenience-rollup/).
