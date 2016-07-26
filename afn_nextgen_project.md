@@ -114,3 +114,13 @@ Well I've got the dreaded super slow [Windows 7 update
 issue](https://www.grc.com/sn/sn-560.htm) so now I'm
 downloading the new [Windows 7 convenience
 rollup](http://www.howtogeek.com/255435/how-to-update-windows-7-all-at-once-with-microsofts-convenience-rollup/).
+
+## 2016-7-26
+
+Ok so I'm trying to solve the windows update issue again today.  Well apparently
+my version of IE is so old that I can'tuse it to downloadthe updates
+from microsoft.  Let's try and download them on my linux machine and scp them.
+Apparently we need to install [this
+update](https://download.microsoft.com/download/C/0/8/C0823F43-BFE9-4147-9B0A-35769CBBE6B0/Windows6.1-KB3020369-x86.msu)
+first then the convenience rollup. Ok so the convenience rollup is installing
+now.
