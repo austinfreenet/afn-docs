@@ -124,3 +124,8 @@ Apparently we need to install [this
 update](https://download.microsoft.com/download/C/0/8/C0823F43-BFE9-4147-9B0A-35769CBBE6B0/Windows6.1-KB3020369-x86.msu)
 first then the convenience rollup. Ok so the convenience rollup is installing
 now.
+
+## 2016-8-9
+
+I'm installing more Windows updates.  I reran the convenience rollup above and
+it seemed to work.  So now I'm rerunning Windows update.
