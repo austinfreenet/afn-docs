@@ -129,3 +129,10 @@ now.
 
 I'm installing more Windows updates.  I reran the convenience rollup above and
 it seemed to work.  So now I'm rerunning Windows update.
+
+## 2016-8-23
+
+I'm trying to re-run Windows update but it's taking forever so let's bail and
+try to get sound working.  So I switch to ICH6 in virt-manager and Windows sound
+started working.  But it's not coming out of the physical sound card so I need
+to figure out what's wrong on the linux side.... Probably pulseaudio?
