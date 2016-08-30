@@ -136,3 +136,20 @@ I'm trying to re-run Windows update but it's taking forever so let's bail and
 try to get sound working.  So I switch to ICH6 in virt-manager and Windows sound
 started working.  But it's not coming out of the physical sound card so I need
 to figure out what's wrong on the linux side.... Probably pulseaudio?
+
+## 2016-8-30
+
+So I've installed pulseaudio and sound is happening!  However it skips :(
+At this point I think I'm ready to move over to Virtualbox.  I'm `apt-get
+install virtualbox` now.  I've imported my Windows 7 test VM.  We definitely
+want USB 2.0 support so let's install the Virtualbox extension pack.  I'm
+uninstalling iTunes from my sample image.  I've also bound the host CD drive to
+the guest and setup an "Everything"(blank) USB filter so all devices get sent to
+the guest.  I ran `adduser user vboxusers`.  The USB devices aren't showing up.
+I need to logout and log back in to recognize my new group membership.  Now the
+USB devices are showing up.  I also bumped the number of cores assigned to
+the guest from 1 to 2.  USB devices passthrough works however there's no way to
+pass through [everything except certain
+devices](https://www.virtualbox.org/ticket/14667).  So I need to write a small
+script that uses VBoxManage to watch for new devices and attach them to the
+guest.
