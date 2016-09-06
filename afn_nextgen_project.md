@@ -150,6 +150,11 @@ I need to logout and log back in to recognize my new group membership.  Now the
 USB devices are showing up.  I also bumped the number of cores assigned to
 the guest from 1 to 2.  USB devices passthrough works however there's no way to
 pass through [everything except certain
-devices](https://www.virtualbox.org/ticket/14667).  So I need to write a small
+devices](http://www.virtualbox.org/ticket/14667).  So I need to write a small
 script that uses VBoxManage to watch for new devices and attach them to the
 guest.
+
+## 2016-9-6
+
+Let's write the script.  The script is coming along nicely.  Hopefully I'll
+finish it next time.
