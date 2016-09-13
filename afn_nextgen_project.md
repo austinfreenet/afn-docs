@@ -158,3 +158,8 @@ guest.
 
 Let's write the script.  The script is coming along nicely.  Hopefully I'll
 finish it next time.
+
+## 2016-9-13
+
+Working on the script again.  Seems to work.  I left it running so John can play
+with it.
