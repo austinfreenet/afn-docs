@@ -163,3 +163,29 @@ finish it next time.
 
 Working on the script again.  Seems to work.  I left it running so John can play
 with it.
+
+## 2016-9-20
+
+I've created a git repo for the afn-nextgen scripts like `watchvboxusb.py`.
+Let's create a different user on the next gen machine for development and
+sysadmin'ing.  I'll call it user name: ryan.
+I've installed xprintidle and xautolock to play around with X idle detection.
+
+So it looks like xautolock disconnects stdout so I'm having trouble testing with
+echo.  Installing zenity to create the logout warning dialog.
+
+This totally works:
+
+    xautolock -nocloseout -nocloseerr -time 1 -locker 'bash -c "echo lock"' -notify 50 -notifier 'bash -c "echo logging out in 45"'
+
+So now let's write the warning dialog script.  I'm installing `bc` for floating
+point math.  I need rounding so let's use awk instead.
+
+I can run the dialog in the user X session by doing:
+
+    root@afn-nextgen:/home/ryan/sandboxes/afn-nextgen/root# export XAUTHORITY=~user/.Xauthority
+    root@afn-nextgen:/home/ryan/sandboxes/afn-nextgen/root# export DISPLAY=:0
+    root@afn-nextgen:/home/ryan/sandboxes/afn-nextgen/root# ./logoutwarningdialog.sh
+
+I'm using `wmctrl` to keep the dialog on top.  Maybe we can use that to keep the
+virtualbox window maximized?
