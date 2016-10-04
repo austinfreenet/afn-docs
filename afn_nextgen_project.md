@@ -189,3 +189,23 @@ I can run the dialog in the user X session by doing:
 
 I'm using `wmctrl` to keep the dialog on top.  Maybe we can use that to keep the
 virtualbox window maximized?
+
+## 2016-10-4
+
+GTOPS hardware giveaway using the city's depreciated hardware.  nextgen might be
+piloted there.  Announced in March.  Programs start in July.  Development
+between March and end of June.
+
+Refurb stickers are brown.  As long as the MS licenses follow the hardware then
+licenses will transfer.
+
+So now the logout dialog doesn't have buttons and is killed when the mouse moves
+or the keyboard is tapped:
+
+    ryan@afn-nextgen:~/sandboxes/afn-nextgen/root$ ./logoutwarningdialog.sh 30
+
+Also this works:
+
+    ryan@afn-nextgen:~/sandboxes/afn-nextgen/root$ TIMEOUT=50; xautolock -nocloseout -nocloseerr -time 1 -locker 'bash -c "echo lock"' -notify $TIMEOUT -notifier "./logoutwarningdialog.sh $TIMEOUT"
+
+I need to fix the logic in logoutwarningdialog to *not* try the kill if it's naturally timeed out already.
