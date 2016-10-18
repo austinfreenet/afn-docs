@@ -23,3 +23,16 @@ Ok so that didn't work.  Let's try
 [l2tp](http://sysadmin.compxtreme.ro/setting-up-a-l2tp-over-ipsec-vpn-on-debian-on-10-steps/)
 
 [This](http://www.jasonernst.com/2016/06/21/l2tp-ipsec-vpn-on-ubuntu-16-04/) seems the most promising.  However QC is filtering VPN traffic on Hydra.  I was able to UDP port scan(`sudo nmap -sU odbc.apricot.info`) from home and see port 500(the ipsec port) but it didn't show up when I scanned from stark on Hydra.  So let's move the VM home and continue from there.
+
+## 2016-10-18
+
+Ok so it's up and running using [these
+instructions](http://www.jasonernst.com/2016/06/21/l2tp-ipsec-vpn-on-ubuntu-16-04/)!  However, the mysql connection is failing with access denied:
+
+    tubaman@debian-vm:~$ mysql -uAFN --password=[password] -h Apridbro1.ec2.internal
+    ERROR 1045 (28000): Access denied for user 'AFN'@'10.35.2.21' (using password: YES)
+
+John is checking with apricot support to make sure our credentials are
+correct.  Perhaps I need to actually use ODBC instead of raw mysql?
+
+Login to mysql like this: `mysql -uodbc_1643 -p'[password]' -h Apridbro1.ec2.internal apricot_1643`
