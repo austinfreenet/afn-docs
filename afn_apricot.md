@@ -35,4 +35,20 @@ instructions](http://www.jasonernst.com/2016/06/21/l2tp-ipsec-vpn-on-ubuntu-16-0
 John is checking with apricot support to make sure our credentials are
 correct.  Perhaps I need to actually use ODBC instead of raw mysql?
 
-Login to mysql like this: `mysql -uodbc_1643 -p'[password]' -h Apridbro1.ec2.internal apricot_1643`
+Login to mysql like this: `mysql -uodbc_1643 -p[password] -h Apridbro1.ec2.internal apricot_1643`
+
+FYI: here's the VPN login info:
+
+    * Username: AFN
+    * Password: [password]
+    * Server: Apridbro1.ec2.internal
+
+Now let's get it working on DO.  Note: *DO NOT* change the default route!
+You'll lock yourself out of ssh.
+
+Ok so I copied all of the files from my VM to the DO droplet and followed the
+blog entry above and we're up.  I've run `apt-get install mysql-client` so I can
+test the mysql connection.
+
+Well I hooked my `start_vpn` script into /etc/network/interfaces on "up".  Now
+the machine is deadlocked at boot.  I've had John recreate the droplet.
