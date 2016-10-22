@@ -52,3 +52,79 @@ test the mysql connection.
 
 Well I hooked my `start_vpn` script into /etc/network/interfaces on "up".  Now
 the machine is deadlocked at boot.  I've had John recreate the droplet.
+
+## 2016-10-22
+
+I logged into the new droplet that John created.  I got the VPN up and running.
+I
+[modded](http://askubuntu.com/questions/293705/how-do-i-control-the-order-of-nameserver-addresses-in-resolv-conf)
+the order of the intefaces in resolvconf so that the vpn DNS server would take
+precedence.  Now Apridbro1.ec2.internal resolves.  I put the following in root's crontab so this should keep the vpn up:
+
+    SHELL=/bin/bash
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+    # m h  dom mon dow   command
+    */5 *   *   *   *    vpn status || vpn reset
+
+`apt-get install socat` so I can use that to port forward instead of
+iptables.  I'm less likely to lock myself out that way.
+
+Here's our `/usr/local/bin/vpn` script:
+
+    #!/bin/bash
+
+    function start() {
+    	mkdir -p /var/run/xl2tpd
+    	touch /var/run/xl2tpd/l2tp-control
+    	echo "starting ipsec"
+    	ipsec up apricot-odbc
+    	echo "starting l2tp"
+    	echo "c apricot-odbc AFN [vpnpassword]" > /var/run/xl2tpd/l2tp-control
+
+    	echo "waiting 30 secs for ppp interface to come up"
+    	START=$(date +%s)
+    	while [ $(date +%s) -lt $(($START + 30)) ]; do
+    		if ifconfig | grep ppp; then
+    			route add -net 10.0.0.0/8 gw 10.254.128.254
+    			nohup socat TCP-LISTEN:3306,fork TCP:Apridbro1.ec2.internal:3306 > /dev/null &
+    			break
+    		fi
+    		sleep 1
+    	done
+    }
+
+    function stop() {
+    	pkill socat
+    	route del -net 10.0.0.0/8 gw 10.254.128.254
+    	ifconfig ppp0 down
+    	ipsec down apricot-odbc
+    	service xl2tpd restart
+    	service strongswan restart
+    }
+
+    function status() {
+    	if echo 'show tables;' | mysql -uodbc_1643 -p'[password]' -h Apridbro1.ec2.internal apricot_1643 > /dev/null && pgrep socat > /dev/null; then
+    		echo "up"
+    		return 0
+    	else
+    		echo "down"
+    		return 2
+    	fi
+    }
+
+    case $1 in
+    	start )
+    		start
+    		;;
+    	stop )
+    		stop
+    		;;
+    	restart | reset )
+    		stop
+    		start
+    		;;
+    	status )
+    		status
+    		;;
+    esac
