@@ -128,3 +128,14 @@ Here's our `/usr/local/bin/vpn` script:
     		status
     		;;
     esac
+
+## 2016-11-1
+
+This is how to use the new mysql apriocot VPN:
+
+    echo 'show tables;' | mysql -uodbc_1643 -p'[password]' -h 45.55.133.102 apricot_1643
+
+Let's create a log file to keep track of when the VPN is up and when it's down.
+We might also want to setup split DNS in the future.
+
+We should also add a IP whitelist on port 3306.

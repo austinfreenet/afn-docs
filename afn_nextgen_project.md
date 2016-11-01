@@ -209,3 +209,8 @@ Also this works:
     ryan@afn-nextgen:~/sandboxes/afn-nextgen/root$ TIMEOUT=50; xautolock -nocloseout -nocloseerr -time 1 -locker 'bash -c "echo lock"' -notify $TIMEOUT -notifier "./logoutwarningdialog.sh $TIMEOUT"
 
 I need to fix the logic in logoutwarningdialog to *not* try the kill if it's naturally timeed out already.
+
+## 2016-11-1
+
+Whoops, we have some screen burnin on our test machine.  I guess LCDs are
+suceptible to burnin.  I've enabled xscreensaver.
