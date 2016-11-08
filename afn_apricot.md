@@ -139,3 +139,24 @@ Let's create a log file to keep track of when the VPN is up and when it's down.
 We might also want to setup split DNS in the future.
 
 We should also add a IP whitelist on port 3306.
+
+## 2016-11-8
+
+I'm using logger in the /usr/local/bin/vpn script now to log stuff to
+syslog(/var/log/syslog).
+
+We should be able to use [this
+technique](http://unix.stackexchange.com/questions/145929/how-to-ensure-ssh-port-is-only-open-to-a-specific-ip-address)
+to whitelist our IP only for port 3306.
+
+I've installing fail2ban to prevent brute force attacks on ssh and mysql.
+
+To edit the IP whitelist:
+
+   1. Comment out the cronjob: `sudo crontab -e`
+   2. Run `sudo vpn stop`
+   3. Edit `/usr/local/bin/vpn` and add/change the IPs in the `ALLOWED_IPS` at
+      the top of the script.  `ALLOWED_IPS` should be a quoted list of
+      space-delimited IP addresses.
+   4. Run `sudo vpn start`
+   5. Uncomment the cronjob: `sudo crontab -e`
