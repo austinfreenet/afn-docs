@@ -160,3 +160,8 @@ To edit the IP whitelist:
       space-delimited IP addresses.
    4. Run `sudo vpn start`
    5. Uncomment the cronjob: `sudo crontab -e`
+
+## 2016-11-15
+
+We've added `biz170.inmotionhosting.com` to the whitelist.  iptables will
+resolve that hostname once when the rule is added during `vpn start`.  Then all those IPs will be added to the whitelist.  If inmotion changes the IPs that biz170 resolves to, we'll have to reset the vpn to get the changes IPs added to the whitelist.
