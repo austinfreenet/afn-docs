@@ -214,3 +214,10 @@ I need to fix the logic in logoutwarningdialog to *not* try the kill if it's nat
 
 Whoops, we have some screen burnin on our test machine.  I guess LCDs are
 suceptible to burnin.  I've enabled xscreensaver.
+
+## 2016-11-15
+
+Back on nextgen today.  Now I've got a daemon that monitors the user's idle time
+and puts up the warning dialog.  Next we need to create the logout script that:
+   1. shuts down the X session
+   2. reset the home dir and VBox snapshot
