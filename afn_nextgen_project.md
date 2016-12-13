@@ -213,7 +213,7 @@ I need to fix the logic in logoutwarningdialog to *not* try the kill if it's nat
 ## 2016-11-1
 
 Whoops, we have some screen burnin on our test machine.  I guess LCDs are
-suceptible to burnin.  I've enabled xscreensaver.
+susceptible to burnin.  I've enabled xscreensaver.
 
 ## 2016-11-15
 
@@ -221,3 +221,23 @@ Back on nextgen today.  Now I've got a daemon that monitors the user's idle time
 and puts up the warning dialog.  Next we need to create the logout script that:
    1. shuts down the X session
    2. reset the home dir and VBox snapshot
+
+## 2016-12-13
+
+For the "login" screen I'll research existing Linux kiosk setups to see what
+others are doing.  Let's use aufs or it's ilk to make it easy to wipe a session
+after logout.  Here's [an
+article](http://www.alandmoore.com/blog/2011/11/05/creating-a-kiosk-with-linux-and-x11-2011-edition/)
+about building a kiosk from scratch with Debian.
+
+Why have our own idle time monitoring daemon(monitoruseridletime.sh)?  Why not
+use xautolock as demo'd above?
+
+It looks like xautolock notify is not working correctly:
+
+    xautolock -nocloseout -time 1 -locker 'bash -c "echo lock"' -notify 55 -notifier 'bash -c "echo locking in 55 secs"'
+
+The first time, the notification happens properly but after moving the mouse
+once, it doesn't notify again until 55 secs in.  Let's take a look at the
+source.  I sent the author Michel and email.  It looks like it's related to
+prevNotification in the source.  We could simply remove that from our version.
