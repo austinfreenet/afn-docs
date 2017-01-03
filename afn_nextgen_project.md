@@ -241,3 +241,43 @@ The first time, the notification happens properly but after moving the mouse
 once, it doesn't notify again until 55 secs in.  Let's take a look at the
 source.  I sent the author Michel and email.  It looks like it's related to
 prevNotification in the source.  We could simply remove that from our version.
+
+## 2017-1-3
+
+I haven't received a reply from Michel.  I've submitted this as a [bug]() to Debian.  I'll try [patching the package](http://cs-people.bu.edu/doucette/xia/guides/debian-patch.txt) myself.
+
+    tubaman@hawaiianwonder:~/build$ cat xautolock-2.2/debian/patches/14_fix_notify.patch
+    Index: xautolock-2.2/src/engine.c
+    ===================================================================
+    --- xautolock-2.2.orig/src/engine.c
+    +++ xautolock-2.2/src/engine.c
+    @@ -210,7 +210,6 @@ queryPointer (Display* d)
+     void
+     evaluateTriggers (Display* d)
+     {
+    -  static time_t prevNotification = 0;
+       time_t        now = 0;
+     
+      /*
+    @@ -321,8 +320,7 @@ evaluateTriggers (Display* d)
+       *  Now trigger the notifier if required. 
+       */
+       if (   notifyLock
+    -      && now + notifyMargin >= lockTrigger
+    -      && prevNotification < now - notifyMargin - 1)
+    +      && now + notifyMargin >= lockTrigger)
+       {
+         if (notifierSpecified)
+         {
+    @@ -337,7 +335,6 @@ evaluateTriggers (Display* d)
+           (void) XSync (d, 0);
+         }
+     
+    -    prevNotification = now;
+       }
+     
+      /*
+
+Well that doesn't work... now it notifies over and over.  If I don't get an
+answer back from either the Debian maintainers or the xautolock devs, I'll
+switch back to using my shell script.
