@@ -281,3 +281,23 @@ I haven't received a reply from Michel.  I've submitted this as a [bug]() to Deb
 Well that doesn't work... now it notifies over and over.  If I don't get an
 answer back from either the Debian maintainers or the xautolock devs, I'll
 switch back to using my shell script.
+
+
+## 2017-1-10
+
+Ok, we're back on the shell script today.  Let's get it running to shutdown the
+session.
+
+Here are the steps to setup the user session:
+
+   1. root syncs the golden homedir to /home/user
+   2. root switches to "user" and starts X (startx?)
+   3. user's X session starts
+   4. root begins monitoring idle time
+      * display a warning
+      * if the warning times out, root kills the user X session
+   5. goto 1
+
+Note: we should rename "user" to "client"
+
+Next we should make sure VirtualBox auto starts and watchusb*.py starts
