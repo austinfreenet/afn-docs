@@ -244,7 +244,7 @@ prevNotification in the source.  We could simply remove that from our version.
 
 ## 2017-1-3
 
-I haven't received a reply from Michel.  I've submitted this as a [bug]() to Debian.  I'll try [patching the package](http://cs-people.bu.edu/doucette/xia/guides/debian-patch.txt) myself.
+I haven't received a reply from Michel.  I've submitted this as a [bug](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=850063) to Debian.  I'll try [patching the package](http://cs-people.bu.edu/doucette/xia/guides/debian-patch.txt) myself.
 
     tubaman@hawaiianwonder:~/build$ cat xautolock-2.2/debian/patches/14_fix_notify.patch
     Index: xautolock-2.2/src/engine.c
