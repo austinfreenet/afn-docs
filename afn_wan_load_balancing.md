@@ -188,3 +188,8 @@ out.  I've restarted shorewall which fixed the issue.  Perhaps we should replace
 lsm with nagios?
 
 Let's setup nagios to monitor the WAN IPs.
+
+
+## 2017-1-13
+
+It looks like [pfSense has good multi-WAN support](https://doc.pfsense.org/index.php/Multi-WAN).  We probably ought to switch to that.
