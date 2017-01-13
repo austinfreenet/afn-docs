@@ -1,10 +1,7 @@
 # Austin FreeNet WAN Load Balancing
 
 AFN has 3 DSL connections coming in.  John would like to load balance
-LAN->Internet traffic across all 3 DSL lines.  I found
-[http://lartc.org/howto/lartc.rpdb.multiple-links.html](a)
-[https://www.pfsense.org/download/mirror.php?section=downloads](few)
-[http://wiki.openwrt.org/doc/howto/mwan3](links).
+LAN->Internet traffic across all 3 DSL lines.  I found [a](http://lartc.org/howto/lartc.rpdb.multiple-links.html) [few](https://www.pfsense.org/download/mirror.php?section=downloads) [links](http://wiki.openwrt.org/doc/howto/mwan3).
 
 I think I'm going to try debian/shorewall/webmin first.  Clonezilla
 restoring my fresh jessie install to the test box.
