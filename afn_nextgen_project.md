@@ -301,3 +301,27 @@ Here are the steps to setup the user session:
 Note: we should rename "user" to "client"
 
 Next we should make sure VirtualBox auto starts and watchusb*.py starts
+
+## 2017-1-17
+
+So I put the following in `~user/.xessionrc`
+
+    . ~/.profile
+
+and this in `~user/.xession`
+
+    pkill -9 -f watchvboxusb.py
+    ~/watchvboxusb.py &
+    VirtualBox --startvm "Windows 7" --fullscreen
+    pkill -9 -f watchvboxusb.py
+
+I need to copy these over to the golden homedir.  Done.  Now, let's try to run the demo.
+
+We should also add --delete to the rsync command in root/reset*.sh so any extra
+files will get deleted.  The rsync sometimes takes a long time.  Perhaps we
+should use an overlay filesystem instead?
+
+I've added a little "start working" dialog.  Figure out a way to hide virtualbox
+bottom menubar.  Make the warning dialog more visible.  John's idea is to make
+the windows guest tranlucent and make the dialog bigger or something.  Maybe,
+animate it?  Use frozen guest instead of booting Windows everytime.
