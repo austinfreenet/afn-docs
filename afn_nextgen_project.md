@@ -330,8 +330,8 @@ animate it?  Use frozen guest instead of booting Windows everytime.
 
 Here's our current punch list
 
-   1. ~use overlay fs instead of rsync~
-   2. ~frozen guest instead of boot~
+   1. ~~use overlay fs instead of rsync~~
+   2. ~~frozen guest instead of boot~~
    3. hide virtualbox bottom menubar
    4. make the warning dialog more visible
       * windows guest translucent?
