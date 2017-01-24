@@ -325,3 +325,23 @@ I've added a little "start working" dialog.  Figure out a way to hide virtualbox
 bottom menubar.  Make the warning dialog more visible.  John's idea is to make
 the windows guest tranlucent and make the dialog bigger or something.  Maybe,
 animate it?  Use frozen guest instead of booting Windows everytime.
+
+## 2017-1-24
+
+Here's our current punch list
+
+   1. ~use overlay fs instead of rsync~
+   2. ~frozen guest instead of boot~
+   3. hide virtualbox bottom menubar
+   4. make the warning dialog more visible
+      * windows guest translucent?
+      * animate warning dialog?
+
+Let's start with the overlay fs.  Debian Jessie has aufs builtin so let's use
+that.  Here's a [good overview of
+aufs](http://www.thegeekstuff.com/2013/05/linux-aufs/).  Wow, now it takes quite
+a while for the user session to start.  It seems like we've just shifted around
+the disk I/O from before the session starts(rsync) to during session
+start(aufs).  Maybe if we switch from boot to unfreeze it'll help.  Ok so
+unfreezing didn't help the session start speed.  I'm looking at optimization
+options for aufs.
