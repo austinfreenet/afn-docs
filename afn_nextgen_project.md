@@ -338,10 +338,9 @@ Here's our current punch list
       * animate warning dialog?
 
 Let's start with the overlay fs.  Debian Jessie has aufs builtin so let's use
-that.  Here's a [good overview of
-aufs](http://www.thegeekstuff.com/2013/05/linux-aufs/).  Wow, now it takes quite
-a while for the user session to start.  It seems like we've just shifted around
-the disk I/O from before the session starts(rsync) to during session
-start(aufs).  Maybe if we switch from boot to unfreeze it'll help.  Ok so
-unfreezing didn't help the session start speed.  I'm looking at optimization
-options for aufs.
+that.  Here's a [good overview of aufs](http://www.thegeekstuff.com/2013/05/linux-aufs/).  Wow, now it takes quite a while for the user session to start.  It seems like we've just shifted around the disk I/O from before the session starts(rsync) to during session start(aufs).  Maybe if we switch from boot to unfreeze it'll help.  Ok so unfreezing didn't help the session start speed.  I'm looking at optimization options for aufs.
+
+## 2017-2-7
+
+Let's try doing a fresh VBox snapshot.  Maybe that will speed things up.  That
+totally worked!  Now session startup is fast!  You can [disable the mini-menu](http://askubuntu.com/questions/31798/in-virtualbox-fullscreen-mode-can-i-disable-or-move-the-popup-menu-bar) in VirtualBox fullscreen mode.
