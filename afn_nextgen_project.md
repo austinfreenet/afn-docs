@@ -332,7 +332,7 @@ Here's our current punch list
 
    1. ~~use overlay fs instead of rsync~~
    2. ~~frozen guest instead of boot~~
-   3. hide virtualbox bottom menubar
+   3. ~~hide virtualbox bottom menubar~~
    4. make the warning dialog more visible
       * windows guest translucent?
       * animate warning dialog?
@@ -344,3 +344,9 @@ that.  Here's a [good overview of aufs](http://www.thegeekstuff.com/2013/05/linu
 
 Let's try doing a fresh VBox snapshot.  Maybe that will speed things up.  That
 totally worked!  Now session startup is fast!  You can [disable the mini-menu](http://askubuntu.com/questions/31798/in-virtualbox-fullscreen-mode-can-i-disable-or-move-the-popup-menu-bar) in VirtualBox fullscreen mode.
+
+## 2017-2-14
+
+Let's try to make the warning dialog more visible.  Starting xfwm4 helps the
+warning dialog appear more obvious.  Let's try to add an image to make it
+bigger.  It's not easy to add an image.
