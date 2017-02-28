@@ -333,8 +333,8 @@ Here's our current punch list
    1. ~~use overlay fs instead of rsync~~
    2. ~~frozen guest instead of boot~~
    3. ~~hide virtualbox bottom menubar~~
-   4. make the warning dialog more visible
-      * windows guest translucent?
+   4. ~~make the warning dialog more visible~~
+      * ~~windows guest translucent?~~
       * animate warning dialog?
 
 Let's start with the overlay fs.  Debian Jessie has aufs builtin so let's use
@@ -350,3 +350,10 @@ totally worked!  Now session startup is fast!  You can [disable the mini-menu](h
 Let's try to make the warning dialog more visible.  Starting xfwm4 helps the
 warning dialog appear more obvious.  Let's try to add an image to make it
 bigger.  It's not easy to add an image.
+
+## 2017-2-28
+
+I used the VirtualBox pause/resume feature to "dim" the Windows guest while the logout warning dialog is visible.  Now let's figure out a way to make the timeout configurable.  First let's refactor the scripts to remove duplication.  Ok, so the refactor is done.  I also made the scripts more robust so now things should work even more smoothly than before.
+
+I'm thinking about using Electron to make a small app to allow the proctors to
+be able to set the timeout values.
