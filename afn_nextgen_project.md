@@ -355,5 +355,4 @@ bigger.  It's not easy to add an image.
 
 I used the VirtualBox pause/resume feature to "dim" the Windows guest while the logout warning dialog is visible.  Now let's figure out a way to make the timeout configurable.  First let's refactor the scripts to remove duplication.  Ok, so the refactor is done.  I also made the scripts more robust so now things should work even more smoothly than before.
 
-I'm thinking about using Electron to make a small app to allow the proctors to
-be able to set the timeout values.
+I'm thinking about using [Electron](https://electron.atom.io/) to make a small app to allow the proctors to be able to set the timeout values.
