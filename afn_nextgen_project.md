@@ -356,3 +356,8 @@ bigger.  It's not easy to add an image.
 I used the VirtualBox pause/resume feature to "dim" the Windows guest while the logout warning dialog is visible.  Now let's figure out a way to make the timeout configurable.  First let's refactor the scripts to remove duplication.  Ok, so the refactor is done.  I also made the scripts more robust so now things should work even more smoothly than before.
 
 I'm thinking about using [Electron](https://electron.atom.io/) to make a small app to allow the proctors to be able to set the timeout values.
+
+## 2017-3-7
+
+We can try to use a [Windows logoff
+script](https://technet.microsoft.com/en-us/library/cc753583%28v=ws.11%29.aspx) to kill the VM.  I've [disabled the shutdown menu items](http://mintywhite.com/windows-7/7customization/remove-options-windows-7-shutdown-menu/).  Now let's add the logoff script.  I've added a simple logoff.bat that runs `shutdown /p /f`.  I've take a new VM snapshot with these new changes.  We need to [hide the "switch user" menu item](http://www.addictivetips.com/windows-tips/how-to-enable-disable-fast-user-switching-in-windows-xp-and-windows-vista/).
