@@ -361,3 +361,32 @@ I'm thinking about using [Electron](https://electron.atom.io/) to make a small a
 
 We can try to use a [Windows logoff
 script](https://technet.microsoft.com/en-us/library/cc753583%28v=ws.11%29.aspx) to kill the VM.  I've [disabled the shutdown menu items](http://mintywhite.com/windows-7/7customization/remove-options-windows-7-shutdown-menu/).  Now let's add the logoff script.  I've added a simple logoff.bat that runs `shutdown /p /f`.  I've take a new VM snapshot with these new changes.  We need to [hide the "switch user" menu item](http://www.addictivetips.com/windows-tips/how-to-enable-disable-fast-user-switching-in-windows-xp-and-windows-vista/).
+
+
+## 2017-3-14
+
+3 things left on the list:
+
+   1. get handleclientsession to run on boot
+   2. create app to allow proctors to modify session timeout
+   3. ~~fix the hardware video disabled warning when starting solitare~~
+
+
+There's [some indication](https://forums.virtualbox.org/viewtopic.php?f=8&t=62541) that I need to reinstall the guest utils in safe mode to get 3D acceleration to work.  Ok so when it asks to install WDDM support or basic Direct 3D support, I chose WDDM.  Solitaire seems to work well now.   I *didn't* have to install it in safe mode either.
+
+Let's disable lightdm on boot so that handleclientsession manages it instead:
+
+    sudo systemctl disable lightdm
+
+
+Whoops... wait.  It looks like we need to [disable
+`graphical.target`](http://unix.stackexchange.com/a/140551) instead of just
+disabling lightdm.  I've reenabled lightdm and instead will mess with
+graphical.target.
+
+I'm trying this: `systemctl set-default multi-user.target`
+
+That worked!
+
+
+Let's figure out to run a the handleclientsession.sh shell script as a daemon.
