@@ -388,5 +388,11 @@ I'm trying this: `systemctl set-default multi-user.target`
 
 That worked!
 
-
 Let's figure out to run a the handleclientsession.sh shell script as a daemon.
+
+## 2016-3-21
+
+When I came in this morning the dev machine was acting weird.  It would freeze
+occassionally both in Windows and Linux.  I'm running SpinRite on level 2.  That
+seemed to help a little.  Now I'm running on level 4.
+
