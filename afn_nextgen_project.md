@@ -396,3 +396,4 @@ When I came in this morning the dev machine was acting weird.  It would freeze
 occassionally both in Windows and Linux.  I'm running SpinRite on level 2.  That
 seemed to help a little.  Now I'm running on level 4.
 
+Brian at Qualcomm says that Qualcomm uses [OSD to do Windows imaging](https://blogs.technet.microsoft.com/gborger/2010/10/11/getting-started-capturing-a-windows-7-image-with-sccm-osd-using-a-task-sequence/).
