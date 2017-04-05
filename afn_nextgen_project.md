@@ -397,3 +397,7 @@ occassionally both in Windows and Linux.  I'm running SpinRite on level 2.  That
 seemed to help a little.  Now I'm running on level 4.
 
 Brian at Qualcomm says that Qualcomm uses [OSD to do Windows imaging](https://blogs.technet.microsoft.com/gborger/2010/10/11/getting-started-capturing-a-windows-7-image-with-sccm-osd-using-a-task-sequence/).
+
+## 2016-4-4
+
+I'm going to do the lab monitor app in [Electron](https://electron.atom.io/).  I'm starting with [electron-boilerplate](https://github.com/szwacz/electron-boilerplate) as recommended by my buddy Welsh.  I'll probably use Angular for the app framework because that's what I'm use to.
