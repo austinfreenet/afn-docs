@@ -403,3 +403,14 @@ Brian at Qualcomm says that Qualcomm uses [OSD to do Windows imaging](https://bl
 I'm going to do the lab monitor app in [Electron](https://electron.atom.io/).  I'm starting with [electron-boilerplate](https://github.com/szwacz/electron-boilerplate) as recommended by my buddy Welsh.  I'll probably use Angular for the app framework because that's what I'm use to.
 
 ## 2017-4-11
+
+Let's get `handleclientsession.sh` to run as a daemon.  systemd can [do this](https://learn.adafruit.com/running-programs-automatically-on-your-tiny-computer/systemd-writing-and-enabling-a-service) for us.
+
+Ok, I've added `handleclientsession.service` to our repo.  Then you can run `sudo systemctl enable ~ryan/sandboxes/afn-nextgen/root/handleclientsession.service` and `sudo systemctl start handleclientsession.service`.
+
+WinSAT was running and comsuming quite a bit of CPU.  Apparently it's a hardware benchmark utility.  I've remove the task from Task Scheduler.
+
+So it turns out that I need to copy handleclientsession.service over to `/etc/systemd/system/` then run enable and start.  Otherwise on reboot, systemd thinks the service is broken.  It probably has something to do with the fact that a service file can't be on a non root partition.
+
+I've confirmed with John that github is a good place to store all our code.
+I'll create an austinfreenet org on github and push all the code there.
