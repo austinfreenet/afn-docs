@@ -414,3 +414,18 @@ So it turns out that I need to copy handleclientsession.service over to `/etc/sy
 
 I've confirmed with John that github is a good place to store all our code.
 I'll create an austinfreenet org on github and push all the code there.
+
+
+## 2017-5-2
+
+Current punch list:
+
+   * fix weird freeze after VM startup
+   * setup nextgen system management (isconf?)
+   * add yusadge-like thing to track nextgen usage 
+
+Let's try to fix the freeze when the VM starts up.  How about upgrading
+VirtualBox?  I'm downloading the debian x64 package for 5.2.22 along with the
+extension pack.
+
+I'm installing it now.
