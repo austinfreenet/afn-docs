@@ -429,3 +429,13 @@ VirtualBox?  I'm downloading the debian x64 package for 5.2.22 along with the
 extension pack.
 
 I'm installing it now.
+
+## 2017-5-16
+
+Well the newer virtualbox was crashy.  Let's downgrade.
+
+Ok, the lightdm session used for autologin is stored in `~/.dmrc`.  Delete the
+session var to use the default session.
+
+We're downgraded and working as before.  Perhaps next time we can trying
+disabling aufs and see if that's what's causing the freezing.
