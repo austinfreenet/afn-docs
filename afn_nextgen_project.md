@@ -439,3 +439,6 @@ session var to use the default session.
 
 We're downgraded and working as before.  Perhaps next time we can trying
 disabling aufs and see if that's what's causing the freezing.
+
+I'm removing libvirt and crew since it's taking up RAM.  I've also remove
+modemmanager for the same reason.
