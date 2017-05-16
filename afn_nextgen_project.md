@@ -442,3 +442,6 @@ disabling aufs and see if that's what's causing the freezing.
 
 I'm removing libvirt and crew since it's taking up RAM.  I've also remove
 modemmanager for the same reason.
+
+I've increased the video RAM to 128 MB for the guest.  Maybe that will help with
+the hang.
