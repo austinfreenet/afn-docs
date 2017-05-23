@@ -367,7 +367,7 @@ script](https://technet.microsoft.com/en-us/library/cc753583%28v=ws.11%29.aspx) 
 
 3 things left on the list:
 
-   1. get handleclientsession to run on boot
+   1. ~get handleclientsession to run on boot~
    2. create app to allow proctors to modify session timeout
    3. ~~fix the hardware video disabled warning when starting solitare~~
 
@@ -415,6 +415,13 @@ So it turns out that I need to copy handleclientsession.service over to `/etc/sy
 I've confirmed with John that github is a good place to store all our code.
 I'll create an austinfreenet org on github and push all the code there.
 
+## 2017-4-25
+
+We're going to roll this out for the PC loan program first so let's focus on that.  Here's the current punch list:
+
+   1. Windows 10 VM
+   2. ???
+   3. Reproducible recipe that John can execute
 
 ## 2017-5-2
 
@@ -422,7 +429,7 @@ Current punch list:
 
    * fix weird freeze after VM startup
    * setup nextgen system management (isconf?)
-   * add yusadge-like thing to track nextgen usage 
+   * add yusadge-like thing to track nextgen usage
 
 Let's try to fix the freeze when the VM starts up.  How about upgrading
 VirtualBox?  I'm downloading the debian x64 package for 5.2.22 along with the
