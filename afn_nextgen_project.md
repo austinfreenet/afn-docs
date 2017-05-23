@@ -452,3 +452,10 @@ modemmanager for the same reason.
 
 I've increased the video RAM to 128 MB for the guest.  Maybe that will help with
 the hang.
+
+## 2017-5-23
+
+It's still a little "hangy" but not as bad.  Maybe we need to bump the video RAM to 256 MB?  The freezing seems worse when I'm running another X session.
+
+Ok, so John and I talked and we decided to setup and walkthrough isconf 2i as a
+candidate for the nextgen management platform.
