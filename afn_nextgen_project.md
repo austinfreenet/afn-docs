@@ -459,3 +459,8 @@ It's still a little "hangy" but not as bad.  Maybe we need to bump the video RAM
 
 Ok, so John and I talked and we decided to setup and walkthrough isconf 2i as a
 candidate for the nextgen management platform.
+
+## 2017-5-30
+
+I've setup a base isconf 2i and installed a base Debian VM with it.  The next
+step is to get it up on the internet.  Perhaps another DO VM.
