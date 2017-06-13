@@ -165,3 +165,8 @@ To edit the IP whitelist:
 
 We've added `biz170.inmotionhosting.com` to the whitelist.  iptables will
 resolve that hostname once when the rule is added during `vpn start`.  Then all those IPs will be added to the whitelist.  If inmotion changes the IPs that biz170 resolves to, we'll have to reset the vpn to get the changes IPs added to the whitelist.
+
+## 2017-6-13
+
+I'm running `apt-get update && apt-get upgrade` to make sure things are all
+patched up.
