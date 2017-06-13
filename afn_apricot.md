@@ -170,3 +170,6 @@ resolve that hostname once when the rule is added during `vpn start`.  Then all 
 
 I'm running `apt-get update && apt-get upgrade` to make sure things are all
 patched up.
+
+I redirected vpn status to /dev/null in the root crontab so that /var/mail/mail
+won't fill up.
