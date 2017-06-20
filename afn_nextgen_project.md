@@ -464,3 +464,8 @@ candidate for the nextgen management platform.
 
 I've setup a base isconf 2i and installed a base Debian VM with it.  The next
 step is to get it up on the internet.  Perhaps another DO VM.
+
+## 2017-6-20
+
+We've decided to use fattuba.com as the base domain for the nextgen
+infrastructure for now.  Just to make things easy.
