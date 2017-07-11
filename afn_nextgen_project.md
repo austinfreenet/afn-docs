@@ -469,3 +469,18 @@ step is to get it up on the internet.  Perhaps another DO VM.
 
 We've decided to use fattuba.com as the base domain for the nextgen
 infrastructure for now.  Just to make things easy.
+
+## 2017-7-11
+
+John has created a Win10 VM on the HP pro in the middle of the wire rack or he
+has one on a USB that he can give me.  Let's setup afn.fattuba.com subdomains.
+
+I setup the following CNAMES:
+
+   * isconf.afn.fattuba.com -> baadsvik.fattuba.com
+   * gold.afn.fattuba.com -> baadsvik.fattuba.com
+   * image.afn.fattuba.com -> baadsvik.fattuba.com
+
+I setup an afn-isconf user on baadsvik and clone the afn-isconf repo there.
+The next step is to create a base Debian Jessie image on the HP pro(backup Win10
+VM first?)
