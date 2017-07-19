@@ -484,3 +484,17 @@ I setup the following CNAMES:
 I setup an afn-isconf user on baadsvik and clone the afn-isconf repo there.
 The next step is to create a base Debian Jessie image on the HP pro(backup Win10
 VM first?)
+
+## 2017-7-18
+
+Booting up the HP pro in the middle of the middle rack to see what we've got.
+Reset the root password to our usual one.  Looked at the Win10 VM.  We'll
+probably have to start fresh and disable a bunch of services.  Let's not bother
+backing it up.  Wiping the HP pro and starting with a fresh Debian Jessie
+install.
+
+Installed via Jessie live CD booted into Live mode.  This installs a full
+desktop environment <- boo.  Let's try again booted into text-based installer
+mode.  Same full desktop setup!  Perhaps it's because there was already a Debian
+Jessie XFCE setup on there before?  Let's try formatting the drive.  That didn't
+seem to work.  Trying the netinst iso image instead of the live one.
