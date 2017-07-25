@@ -498,3 +498,10 @@ desktop environment <- boo.  Let's try again booted into text-based installer
 mode.  Same full desktop setup!  Perhaps it's because there was already a Debian
 Jessie XFCE setup on there before?  Let's try formatting the drive.  That didn't
 seem to work.  Trying the netinst iso image instead of the live one.
+
+## 2017-7-25
+
+netinst worked!  Now let's backup the base image using clonezilla.
+
+Using our clonezilla vm on the vm server to save the freshly installed bare
+Jessie.
