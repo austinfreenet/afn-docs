@@ -173,3 +173,98 @@ patched up.
 
 I redirected vpn status to /dev/null in the root crontab so that /var/mail/mail
 won't fill up.
+
+## 2017-7-25
+
+Apricot changed their mysql hostname so we needed to update the script.  Here's
+the new vpn script:
+
+    #!/bin/bash
+
+    ALLOWED_IPS="99.162.127.133 99.179.96.188 173.174.119.152 biz170.inmotionhosting.com" # space delimited
+
+    DBHOST=[thedbhost]
+    DBUSER=odbc_1643
+    DBPASS=[thepassword]
+    DBNAME=[theusername]
+
+    function log() {
+    	MSG="$1"
+    	echo "$MSG"
+    	logger -t vpn "$MSG"
+    }
+
+    function start() {
+    	log "starting"
+    	log "setting up IP whitelist: $ALLOWED_IPS"
+    	for ip in $ALLOWED_IPS; do
+    		iptables -A INPUT -p tcp -s $ip --dport 3306 -j ACCEPT
+    	done
+    	iptables -A INPUT -p tcp -s 0.0.0.0/0 --dport 3306 -j DROP
+    	mkdir -p /var/run/xl2tpd
+    	touch /var/run/xl2tpd/l2tp-control
+    	log "starting ipsec"
+    	ipsec up apricot-odbc
+    	log "starting l2tp"
+    	echo "c apricot-odbc AFN [vpnpassword]" > /var/run/xl2tpd/l2tp-control
+
+    	log "waiting 30 secs for ppp interface to come up"
+    	START=$(date +%s)
+    	while [ $(date +%s) -lt $(($START + 30)) ]; do
+    		if ifconfig | grep ppp; then
+    			route add -net 10.0.0.0/8 gw 10.254.128.254
+    			nohup socat TCP-LISTEN:3306,fork TCP:$DBHOST:3306 > /dev/null &
+    			break
+    		fi
+    		sleep 1
+    	done
+    }
+
+    function stop() {
+    	log "stopping"
+    	surekill socat
+    	route del -net 10.0.0.0/8 gw 10.254.128.254
+    	ifconfig ppp0 down
+    	ipsec down apricot-odbc
+    	service xl2tpd restart
+    	service strongswan restart
+    	iptables -D INPUT -p tcp -s 0.0.0.0/0 --dport 3306 -j DROP
+    	for ip in $ALLOWED_IPS; do
+    		iptables -D INPUT -p tcp -s $ip --dport 3306 -j ACCEPT
+    	done
+    }
+
+    function status() {
+    	if echo 'show tables;' | mysql -u$DBUSER -p$DBPASS -h $DBHOST $DBNAME > /dev/null && pgrep socat > /dev/null; then
+    		log "status: up"
+    		return 0
+    	else
+    		log "status: down"
+    		return 2
+    	fi
+    }
+
+    function reset() {
+    	log "resetting"
+    	stop
+    	start
+    }
+
+    case $1 in
+    	start )
+    		start
+    		;;
+    	stop )
+    		stop
+    		;;
+    	restart | reset )
+    		reset
+    		;;
+    	status )
+    		status
+    		;;
+    esac
+
+
+We're also using my surekill script to make sure socat dies when stop
+is called.
