@@ -505,3 +505,23 @@ netinst worked!  Now let's backup the base image using clonezilla.
 
 Using our clonezilla vm on the vm server to save the freshly installed bare
 Jessie.
+
+## 2017-8-8
+
+I'm installing isconf prereqs(make, rsync, resolvconf, etc) on the client host.  I installed fakeroot and rsync on the gold server.  I've added the following to /etc/dhcp/dhclient.conf to make sure our domain is set correctly:
+
+    supersede domain-name "afn.fattuba.com";
+
+I'm installing openssh-server on the client host.
+
+Note: lock down the server to only allow rsync/scp.
+
+## 2017-8-15
+
+Looks like the clonezilla backup went well.  Let's try to install
+stuff to get the user signon VM startup working.  We should get the
+packages.list off of the hand built client.  Also /etc and /usr/local.
+Nothing in /usr/local or /opt.  afn-nextgen hand built client is at
+192.168.1.115.  I ended up locking down the server to rsync only using
+rrsync from /usr/share/doc/rsync/scripts.  That way the hosts in the field
+will only be able to read via rsync(no writes or other remove commands).
