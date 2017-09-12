@@ -529,3 +529,5 @@ will only be able to read via rsync(no writes or other remove commands).
 ## 2017-9-12
 
 Let's start adding packages.  Ok so lightdm and virtualbox are installed.
+I think the next step is copying over the /home/user data and setting up the
+aufs overlay.
