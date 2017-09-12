@@ -525,3 +525,7 @@ Nothing in /usr/local or /opt.  afn-nextgen hand built client is at
 192.168.1.115.  I ended up locking down the server to rsync only using
 rrsync from /usr/share/doc/rsync/scripts.  That way the hosts in the field
 will only be able to read via rsync(no writes or other remove commands).
+
+## 2017-9-12
+
+Let's start adding packages.  Ok so lightdm and virtualbox are installed.
