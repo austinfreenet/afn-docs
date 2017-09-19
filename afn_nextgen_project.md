@@ -531,3 +531,12 @@ will only be able to read via rsync(no writes or other remove commands).
 Let's start adding packages.  Ok so lightdm and virtualbox are installed.
 I think the next step is copying over the /home/user data and setting up the
 aufs overlay.
+
+## 2017-9-19
+
+The tools for the overlay are up and running.  We need to copy over the data.
+
+BTW, you'll also need the `/root/.ssh/id_rsa*` ssh keys on the client in order
+to run rc.isconf the first time.
+
+Next time, remove unused stanzas from isconf for clarity to avoid confusion.
