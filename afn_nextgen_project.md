@@ -540,3 +540,8 @@ BTW, you'll also need the `/root/.ssh/id_rsa*` ssh keys on the client in order
 to run rc.isconf the first time.
 
 Next time, remove unused stanzas from isconf for clarity to avoid confusion.
+
+## 2017-10-10
+
+Copied John's Win10 VM over.  Don't know VM password for user "John".  I'll get
+that from John so I can mess with the image.
