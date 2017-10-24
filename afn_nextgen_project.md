@@ -552,3 +552,9 @@ It looks like the virtualbox 4 guest additions hang Windows 10.  Let's try
 upgrading to virtualbox 5 to see if we can get that to work.  I'm downloading
 5.2 amd64 for debian.  Ok, let's use the [apt method
 instead](https://www.virtualbox.org/wiki/Linux_Downloads#Debian-basedLinuxdistributions).
+
+Ok, the Win 10 VM is up.  Let's play with it and see how it performs.  I need to
+fixup the following:
+
+   1. the guest clock is off
+   2. the mini bar needs to be hidden
