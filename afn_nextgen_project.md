@@ -545,3 +545,10 @@ Next time, remove unused stanzas from isconf for clarity to avoid confusion.
 
 Copied John's Win10 VM over.  Don't know VM password for user "John".  I'll get
 that from John so I can mess with the image.
+
+## 2017-10-24
+
+It looks like the virtualbox 4 guest additions hang Windows 10.  Let's try
+upgrading to virtualbox 5 to see if we can get that to work.  I'm downloading
+5.2 amd64 for debian.  Ok, let's use the [apt method
+instead](https://www.virtualbox.org/wiki/Linux_Downloads#Debian-basedLinuxdistributions).
