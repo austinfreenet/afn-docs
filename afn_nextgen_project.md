@@ -556,5 +556,42 @@ instead](https://www.virtualbox.org/wiki/Linux_Downloads#Debian-basedLinuxdistri
 Ok, the Win 10 VM is up.  Let's play with it and see how it performs.  I need to
 fixup the following:
 
-   1. the guest clock is off
-   2. the mini bar needs to be hidden
+   1. ~the guest clock is off~
+   2. ~the mini bar needs to be hidden~
+
+## 2017-11-7
+
+~We also need to get the "log out" menu item working like it was in Win7.~
+
+Here's how to update/modify the VM:
+
+   1. login as root in a virtual terminal (ctrl-alt-1)
+   1. `sudo systemctl stop handleclientsession`
+   1. `sudo systemctl stop lightdm`
+   1. `sudo pkill -u user`
+   1. `sudo umount /home/user`
+   1. `sudo mv /home/user /home/user_ootw`
+   1. `sudo mv /home/gold/user /home/user`
+   1. `sudo -u user sed -i '/^Language.*/a Session=xfce' /home/user/.dmrc`
+   1. `sudo systemctl start lightdm`
+   1. start virtual box
+   1. modify stuff
+   1. power down the VM
+   1. delete the current "saved state" snapshot
+   1. boot the VM
+   1. set it to full screen mode
+   1. save the state: `sudo -u user VBoxManage controlvm "Windows 10" savestate`
+   1. `sudo systemctl stop lightdm`
+   1. `sudo -u user sed -i '/^Session=/d' /home/user/.dmrc`
+   1. `sudo mv /home/user /home/gold/user`
+   1. `sudo mv /home/user_ootw /home/user`
+   1. `sudo systemctl start handleclientsession`
+
+I've enabled 3D/2D video acceleration and set the virtualization method to
+"default" which ends up being hyper V.
+
+I don't have a CD/DVD to test with so I'll need to find one.  I'm testing the
+USB stuff now.  It looks like watchusb is watching the Win7 VM.  Let's switch
+that over.  Audio works fine.  CD works fine.  Haven't testing CD/DVD burning
+yet.  Next we should jump back on management(isconf) since that's what
+John wants us to do.
