@@ -595,3 +595,10 @@ USB stuff now.  It looks like watchusb is watching the Win7 VM.  Let's switch
 that over.  Audio works fine.  CD works fine.  Haven't testing CD/DVD burning
 yet.  Next we should jump back on management(isconf) since that's what
 John wants us to do.
+
+## 2017-11-14
+
+It looks like the disk filled up.  It was probably on the edge before I left
+last week.  I've deleted the old Windows 7 VM to make space.  Let's shift back
+over to working on isconf.  I'm copying over the VM now.  Let's research
+bittorrent to make the VM distribution more efficient
