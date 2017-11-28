@@ -601,4 +601,16 @@ John wants us to do.
 It looks like the disk filled up.  It was probably on the edge before I left
 last week.  I've deleted the old Windows 7 VM to make space.  Let's shift back
 over to working on isconf.  I'm copying over the VM now.  Let's research
-bittorrent to make the VM distribution more efficient
+bittorrent to make the VM distribution more efficient.
+
+## 2017-11-28
+
+I've upgraded virtualbox to 5.2 using isconf.  I've installed afn-nextgen
+via isconf.  Now the Windows lightdm session isn't starting.  I need
+to log in to the hand-built box to see how I did that.  I checked
+/home/client/.xsession-errors.  It turns out that I still had virtualbox
+config references to /home/user.  I switched those to /home/client.
+I also need to install zenity.  Now virtualbox won't start.  It recommends a
+reinstall so doing that now.  I had to change /home/user to /home/client in
+/home/gold/client/Virtual*/*.vbox.  Now I need to install the virtualbox
+extension pack
