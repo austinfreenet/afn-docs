@@ -614,3 +614,7 @@ I also need to install zenity.  Now virtualbox won't start.  It recommends a
 reinstall so doing that now.  I had to change /home/user to /home/client in
 /home/gold/client/Virtual*/*.vbox.  Now I need to install the virtualbox
 extension pack
+
+## 2017-12-5
+
+It's up now.  Seems like it works!  Time to try to install on the optiplex.
