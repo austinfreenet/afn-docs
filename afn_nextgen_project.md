@@ -618,3 +618,13 @@ extension pack
 ## 2017-12-5
 
 It's up now.  Seems like it works!  Time to try to install on the optiplex.
+
+## 2017-12-19
+
+make was helpfully deleting intermediate files.... which of course breaks
+things.  I've made a change to the main.mk file to fix this.  I also started
+imaging the optiplex.  If that works, then we're ready for:
+
+   1. a small local test rollout on Optiplexes probably in the cave
+   2. a documented way to update the VM
+   3. a way to log client sessions(yusadge, etc)
