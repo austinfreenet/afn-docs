@@ -628,3 +628,20 @@ imaging the optiplex.  If that works, then we're ready for:
    1. a small local test rollout on Optiplexes probably in the cave
    2. a documented way to update the VM
    3. a way to log client sessions(yusadge, etc)
+
+## 2018-1-9
+
+The optiplex clone finished.  /etc/rc.isconf failed though.  I copied rc.isconf
+over from the gold server and then started it.  That runs fine.  So it looks
+like the version of /etc/rc.isconf in the clonezilla image is too old.  We
+should probably update it and save a new image.  John's ultimate goal is to make
+this optiplex "the gold server".
+
+Let's start copying over the gold VM from the existing nextgen server.  I port
+scanned the network looking for it like this: `nmap -p22 192.168.1.0/24`.
+I tried to scp it but I can't scp as root.  Let's manually mod the `sshd_config`
+to allow that temporarily.  It turns out that it's already enabled key-only.  So
+let's copy a key over there.  Ok, now an rsync is in process.
+
+There was an error message during virtualbox 5.x install.  It couldn't find the
+kernel headers to build against.  Perhaps we need a reboot somewhere?
