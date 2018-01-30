@@ -645,3 +645,8 @@ let's copy a key over there.  Ok, now an rsync is in process.
 
 There was an error message during virtualbox 5.x install.  It couldn't find the
 kernel headers to build against.  Perhaps we need a reboot somewhere?
+
+## 2018-1-30
+
+Ok, retrying isconf to see if we can get past the vbox 5.x install issue.  If
+this works, we still need to try a fresh install again to debug things.
