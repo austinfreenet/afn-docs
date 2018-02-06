@@ -650,3 +650,15 @@ kernel headers to build against.  Perhaps we need a reboot somewhere?
 
 Ok, retrying isconf to see if we can get past the vbox 5.x install issue.  If
 this works, we still need to try a fresh install again to debug things.
+
+## 2018-2-6
+
+It ended up being a mismatch between the running kernel and the installed
+headers.  It looks like we need to apt-get upgrade before installing
+virtualbox-5.2.  Alternatively let's make sure we have headers for the currently
+running kernel installed.
+
+It looks like a VM in saved state can't be moved from machine to machine.  So
+we'll have to do a one-time full boot when updating the VM then save state.
+
+There are still some graphics glitches on the solitaire startup screen.
