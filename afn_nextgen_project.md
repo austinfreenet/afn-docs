@@ -662,3 +662,8 @@ It looks like a VM in saved state can't be moved from machine to machine.  So
 we'll have to do a one-time full boot when updating the VM then save state.
 
 There are still some graphics glitches on the solitaire startup screen.
+
+## 2018-2-13
+
+Ok, let's try a fresh install on the dell to make sure the virtualbox upgrade
+works.
