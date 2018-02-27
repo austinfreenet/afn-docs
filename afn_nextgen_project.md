@@ -667,3 +667,7 @@ There are still some graphics glitches on the solitaire startup screen.
 
 Ok, let's try a fresh install on the dell to make sure the virtualbox upgrade
 works.
+
+## 2018-2-27
+
+Ok, the restore worked.  Now running isconf.
