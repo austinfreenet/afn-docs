@@ -268,3 +268,8 @@ the new vpn script:
 
 We're also using my surekill script to make sure socat dies when stop
 is called.
+
+## 2018-3-13
+
+I changed the db password in /usr/local/bin/vpn to the new one that John sent
+me.  We'll need to change the password in the dashboard script also.
