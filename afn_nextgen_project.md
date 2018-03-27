@@ -674,7 +674,7 @@ Ok, the restore worked.  Now running isconf.
 
 ## 2018-3-13
 
-I've ordered a 128 db usb 3.0 flash drive for the Win10 image.
+I've ordered a 128 GB usb 3.0 flash drive for the Win10 image.
 
 I've crossed over the host with the Win10 VM and the target to copy over
 /home/gold.  The switch is only fast ethernet and this method allows gig.
@@ -683,3 +683,8 @@ Ok so the HP Pro standing up has a very old version of /home/gold.  Let's try
 getting it from the HP pro that's laying down.
 
 Ok, that seems to be working.
+
+## 2018-3-27
+
+I'm copying /home/gold onto my 128 GB flash drive.  I had to reformat it from
+fat32 to ntfs because the files are bigger than 4G.
