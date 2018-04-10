@@ -688,3 +688,9 @@ Ok, that seems to be working.
 
 I'm copying /home/gold onto my 128 GB flash drive.  I had to reformat it from
 fat32 to ntfs because the files are bigger than 4G.
+
+## 2018-4-10
+
+It seems like Windows 10 really wants to update itself.  Let's do that today
+before copying.  Well doing the update will take awhile.  Let it run until next
+Tuesday.
