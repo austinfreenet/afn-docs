@@ -693,4 +693,5 @@ fat32 to ntfs because the files are bigger than 4G.
 
 It seems like Windows 10 really wants to update itself.  Let's do that today
 before copying.  Well doing the update will take awhile.  Let it run until next
-Tuesday.
+Tuesday.  John is moving the stuff so I'll put it back the way it was.  We can
+continue this later.
