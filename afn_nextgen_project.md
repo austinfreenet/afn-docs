@@ -700,3 +700,16 @@ continue this later.
 
 I copied the Windows VM onto my USB drive after John disabled some stuff in the
 image to make it faster.  Next we should script the VM update.
+
+Ugh, the Win10 Guest is unusable for 5 min after restore.  Various processes are
+consuming 100% disk:
+
+   * Service Host...
+   * Antimalware Service Executable
+   * (others)
+
+After that, Microsoft Malware Protection Command Line Utility consumes
+100% CPU.  How do we disable that?
+
+Ok, the scripts to update the VM are written.  I need to do more testing with
+them.
