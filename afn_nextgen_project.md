@@ -713,3 +713,9 @@ After that, Microsoft Malware Protection Command Line Utility consumes
 
 Ok, the scripts to update the VM are written.  I need to do more testing with
 them.
+
+## 2018-5-01
+
+Found a bug in afn-nexgen vm update scripts.  Fixed that.  Windows 10 is still
+trying to run updates/malware scans/etc that consume all our disk I/O.  We need
+to shut that stuff down.
