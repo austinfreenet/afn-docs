@@ -719,3 +719,10 @@ them.
 Found a bug in afn-nexgen vm update scripts.  Fixed that.  Windows 10 is still
 trying to run updates/malware scans/etc that consume all our disk I/O.  We need
 to shut that stuff down.
+
+## 2018-5-8
+
+Let's turn all that Windows 10 junk off.  First: `Antimalware Service
+Executable`  Let's try [this](https://blog.emsisoft.com/en/28620/antimalware-service-executable/).  Rebooting now.
+
+Ok, now let's disable automatic updates.  Try [this](https://www.easeus.com/todo-backup-resource/how-to-stop-windows-10-from-automatically-update.html).  Rebooting now.  That seems to have fixed it!  We'll see next week.
