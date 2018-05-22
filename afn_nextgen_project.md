@@ -726,3 +726,8 @@ Let's turn all that Windows 10 junk off.  First: `Antimalware Service
 Executable`  Let's try [this](https://blog.emsisoft.com/en/28620/antimalware-service-executable/).  Rebooting now.
 
 Ok, now let's disable automatic updates.  Try [this](https://www.easeus.com/todo-backup-resource/how-to-stop-windows-10-from-automatically-update.html).  Rebooting now.  That seems to have fixed it!  We'll see next week.
+
+## 2018-5-22
+
+"Windows 10 Upgrade Helper" is still running.  Let's try to disable it with
+[this](https://social.technet.microsoft.com/Forums/en-US/b4216132-56c8-4a26-a9ba-aaed31686775/how-can-i-block-windows-10-upgrade-assistant-from-reinstalling-itself?forum=win10itprogeneral).
