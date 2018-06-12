@@ -731,3 +731,14 @@ Ok, now let's disable automatic updates.  Try [this](https://www.easeus.com/todo
 
 "Windows 10 Upgrade Helper" is still running.  Let's try to disable it with
 [this](https://social.technet.microsoft.com/Forums/en-US/b4216132-56c8-4a26-a9ba-aaed31686775/how-can-i-block-windows-10-upgrade-assistant-from-reinstalling-itself?forum=win10itprogeneral).
+
+## 2018-6-5
+
+The VM seems to be locking up.  Let's go back to the last snapshot and see if
+that fixes it.  Yup, that seems to work
+
+
+## 2018-6-12
+
+The VM seems to still be working great!  I see an item in the start menu
+that says "Update Pending.  Install the Update"
