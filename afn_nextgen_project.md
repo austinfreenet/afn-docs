@@ -756,3 +756,5 @@ Let's try overlayfs instead of aufs.  It's only available on stretch and not
 jessie AFAIK.  Perhaps we can use the kernel from jessie-backports?
 
 Also there are some indications that KVM can run Windows 10 with [great graphics performance now](https://heiko-sieger.info/running-windows-10-on-linux-using-kvm-with-vga-passthrough/).  Perhaps if/when we upgrade to Debian Stretch we can try KVM again?
+
+More [Linux KVM Windows 10 hackery](https://medium.com/@dubistkomisch/gaming-on-arch-linux-and-windows-10-with-vfio-iommu-gpu-passthrough-7c395dde5c2)
