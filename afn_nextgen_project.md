@@ -742,3 +742,17 @@ that fixes it.  Yup, that seems to work
 
 The VM seems to still be working great!  I see an item in the start menu
 that says "Update Pending.  Install the Update"
+
+## 2018-7-24
+
+git-annex can use bittorrent as a source!  Perhaps we should use git-annex to
+manage images in general for that reason.
+
+I need to ask John for a test lab at this point I think.
+
+## 2018-8-14
+
+Let's try overlayfs instead of aufs.  It's only available on stretch and not
+jessie AFAIK.  Perhaps we can use the kernel from jessie-backports?
+
+Also there are some indications that KVM can run Windows 10 with [great graphics performance now](https://heiko-sieger.info/running-windows-10-on-linux-using-kvm-with-vga-passthrough/).  Perhaps if/when we upgrade to Debian Stretch we can try KVM again?
