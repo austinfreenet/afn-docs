@@ -758,3 +758,18 @@ jessie AFAIK.  Perhaps we can use the kernel from jessie-backports?
 Also there are some indications that KVM can run Windows 10 with [great graphics performance now](https://heiko-sieger.info/running-windows-10-on-linux-using-kvm-with-vga-passthrough/).  Perhaps if/when we upgrade to Debian Stretch we can try KVM again?
 
 More [Linux KVM Windows 10 hackery](https://medium.com/@dubistkomisch/gaming-on-arch-linux-and-windows-10-with-vfio-iommu-gpu-passthrough-7c395dde5c2)
+
+## 2018-9-25
+
+I've now got a box with Debian Stretch(9) and KVM with virt-manager installed.
+I ran:
+
+    adduser client libvirt
+    adduser client libvirt-qemu
+
+So that "client" can manage VMs without room permissions.
+
+I'm exporting the VM from the Debian 8 Virtualbox test machine so I can import
+it.  I ran out of disk on the Debian 8 machine so I rsync'd the stuff over to
+the new Debian 9 host.  I've install virtualbox there and have started the
+export.  Once that's done, I'll try importing via virt-manager.
