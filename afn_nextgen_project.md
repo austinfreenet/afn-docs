@@ -773,3 +773,34 @@ I'm exporting the VM from the Debian 8 Virtualbox test machine so I can import
 it.  I ran out of disk on the Debian 8 machine so I rsync'd the stuff over to
 the new Debian 9 host.  I've install virtualbox there and have started the
 export.  Once that's done, I'll try importing via virt-manager.
+
+## 2018-10-2
+
+The ova has been exported from VirtualBox.  Now I need to [import it into
+kvm](https://access.redhat.com/articles/1351963).  It seems like virt-v2v needs
+to be run as root so that it can access the system storage pools.  Got the
+following error:
+
+    root@nextgen-2:/home/client/Documents# virt-v2v -i ova Windows\ 10.ova -o libvirt -of qcow2 -os default
+    [   0.0] Opening the source -i ova Windows 10.ova
+    virt-v2v: warning: could not parse ovf:Name from OVF document
+    virt-v2v: warning: ova disk has an unknown VMware controller type (20),
+    please report this as a bug supplying the *.ovf file extracted from the ova
+    [ 455.4] Creating an overlay to protect the source from being modified
+    [ 457.9] Initializing the target -o libvirt -os default
+    [ 457.9] Opening the overlay
+    [ 509.8] Inspecting the overlay
+    [ 513.3] Checking for sufficient free disk space in the guest
+    [ 513.3] Estimating space required on target for each disk
+    [ 513.3] Converting Windows 10 Pro to run on KVM
+    virt-v2v: warning: Neither rhev-apt.exe nor vmdp.exe can be found.  Unable
+    to install one of them.
+    virt-v2v: error: libguestfs error: mkdir_p: /Windows/Drivers/VirtIO:
+    Read-only file system
+
+    If reporting bugs, run virt-v2v with debugging enabled and include the
+    complete output:
+
+      virt-v2v -v -x [...]
+
+Need to figure out how to get past this
