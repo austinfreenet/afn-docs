@@ -804,3 +804,13 @@ following error:
       virt-v2v -v -x [...]
 
 Need to figure out how to get past this
+
+## 2018-10-16
+
+I'm running virt-v2v with debugging enabled as requested above.  I'm having
+trouble using virt-v2v to import the ova.  So trying 2 things instead:
+   1. untarring the .ova manually
+   2. cloning the VirtualBox VM so that it'll squash all the snapshots
+
+Then I'm going to take the results of 1 of those 2 and convert that .vdi to a
+qcow2 disk and create a new KVM VM using that disk image.
