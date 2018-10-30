@@ -814,3 +814,9 @@ trouble using virt-v2v to import the ova.  So trying 2 things instead:
 
 Then I'm going to take the results of 1 of those 2 and convert that .vdi to a
 qcow2 disk and create a new KVM VM using that disk image.
+
+## 2018-10-30
+
+I'm using `qemu-img` to [convert the cloned vdi file](https://computingforgeeks.com/how-to-convert-virtualbox-disk-image-vdi-and-img-to-qcow2-format/).  It should take a while so I'll pick this back up next Tuesday.
+
+I'm interested in trying ZFS instead of an overlay FS someday also.
