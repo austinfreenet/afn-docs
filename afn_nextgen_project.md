@@ -820,3 +820,16 @@ qcow2 disk and create a new KVM VM using that disk image.
 I'm using `qemu-img` to [convert the cloned vdi file](https://computingforgeeks.com/how-to-convert-virtualbox-disk-image-vdi-and-img-to-qcow2-format/).  It should take a while so I'll pick this back up next Tuesday.
 
 I'm interested in trying ZFS instead of an overlay FS someday also.
+
+## 2018-11-06
+
+So I've created a new KVM VM from that qcow image but the boot gets stuck at
+"booting from hard disk".  Maybe [this is the problem](https://serverfault.com/questions/899290/kvm-gets-stuck-at-booting-from-hard-disk).
+
+Ok I ran `apt-get install ovmf` so that I could use UEFI to boot the image.
+Then I clicked "configure before installation" so I can switch to boot from BIOS
+to UEFI and chipset to Q35.  This also required me to switch from IDE to SATA
+disk controller.
+
+So Windows boots now and of course it's trying to install updates.  Also the
+display size is 800x600 so I'll have to figure that out.
