@@ -833,3 +833,16 @@ disk controller.
 
 So Windows boots now and of course it's trying to install updates.  Also the
 display size is 800x600 so I'll have to figure that out.
+
+## 2018-11-27
+
+It looks like Windows is updated now but it needs to be activated.  Let's try
+[this](http://bart.vanhauwaert.org/hints/installing-win10-on-KVM.html) to fix
+the video resolution.  Ok so that worked.  Now for auto resizing to work I need
+to [install the spice tools](https://www.felso.net/running-windows-on-linux-with-qemukvm-using-virtual-machine-manager/) in windows.  I think those tools include the QXL driver so I probably don't need to install that in the future.
+
+Now we need to test:
+
+   * audio
+   * USB devices
+   * CDrom access
