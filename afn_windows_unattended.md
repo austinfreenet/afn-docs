@@ -38,3 +38,8 @@ Easier idea.  Let's try to find a pre-made Win10 answer file that we can just
 try.  Looks like not.  So let's create one.  First we need to create a USB image
 that we can use to install Win10.  The autounattend.xml file goes on that.  I'm
 following [this guide](https://www.windowscentral.com/how-create-unattended-media-do-automated-installation-windows-10) that uses the default Microsoft tools.  Wow, export of install.wim file takes a *looooooong* time.  I'm on `Setting up an answer file environment` step 6.
+
+## 2019-4-09
+
+I'm unable to select distribution share.  I'm restarting the program.  I had to
+follow [this doc](https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/wsim/create-or-open-a-distribution-share#create-a-distribution-share-using-windowssim) to create the distribution share.  Now I'm creating the answer file.  Ok, now we're [defining the product key](https://www.windowscentral.com/how-create-unattended-media-do-automated-installation-windows-10#definning_productkey).  I've saved the answer file.  Now I need to create the USB install media.
