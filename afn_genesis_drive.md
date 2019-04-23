@@ -30,3 +30,30 @@ I used gparted to do this.  Then use tuxboot to install the files.
 That seems to work. Let's try to boot it using a VM.  Here's [instructions on how to get VirtualBox to boot from a real USB drive](https://askubuntu.com/a/693729).
 
 Maybe [this is the next step](https://clonezilla.org/advanced/customized-clonezilla-live.php)?
+
+## 2019-4-23
+
+We also need to figure out how to host the images on the Clonezilla Live
+USB drive.  It looks like we need to [create a second partition on the USB drive](https://drbl.org/faq/fine-print.php?path=./2_System/120_image_repository_on_same_usb_stick.faq#120_image_repository_on_same_usb_stick.faq).
+Ok, I used gparted to shrink the clonezilla live partition and add a
+"disk images" partition.  Let's try to clone our Win10 virtualbox install.
+
+So it looks like I can boot from the clonezilla USB disk in EFI mode but
+not if I don't have that checked.  Is it because my live partition is NTFS
+instead of fat32?  Looks like this is only an issue in VirtualBox since
+John can boot this fine on a host.  So I can boot John's sample live USB
+if I use the method above and I use an IDE controller instead of SATA.
+Let's see if it's the NTFS vs fat32 thing.  That seems to do it!  Now I
+have a drive with one fat32 parition with clonezilla live and one NTFS
+partition for disk images.
+
+Now let's add an IDE controller to our Win10 guest and boot into clonezilla
+live.  Ok so I'm now cloning my Win10 guest as a test.
+
+Here's the command to run directly next time:
+
+    /usr/sbin/ocs-sr -q2 -c -j2 -z1 -i 4096 -sfsck -senc -p choose savedisk win10_2019-04-23-09-img sdb
+
+So I've gone through the [customize docs](https://clonezilla.org/advanced/customized-clonezilla-live.php).  Let's load that zip on the USB and see what it does.
+I think I killed the guest VM too soon.  Nothing was persisted on the partimag
+partition.
