@@ -57,3 +57,19 @@ Here's the command to run directly next time:
 So I've gone through the [customize docs](https://clonezilla.org/advanced/customized-clonezilla-live.php).  Let's load that zip on the USB and see what it does.
 I think I killed the guest VM too soon.  Nothing was persisted on the partimag
 partition.
+
+## 2019-4-30
+
+Trying to mount USB drive without doing the drive hack.  No go, you need the
+drive hack to **boot** from USB.  Let's just try to get something to persist on
+the /partimag partition.  Ok so a normal clone worked fine.  Back to the custom
+stuff.  Well the custom stuff that we did above is corrupt(zipfile).  Let's
+retry and make sure the VM shuts down correctly.  The VM locked up when I tried
+to shut it down.  Let's try to sync on the host before shutting down the VM.
+
+It seem unreliable.  Let's `dd` the USB data over to a VirtualBox disk and boot
+from that.  Then when we're satified with the result, we can `dd` it back.
+I'm using rsync to sync the stuff back to the USB drive on the host.
+
+Ok, I've loaded the custom clonezilla.zip on the USB drive.  Their default
+`custom-ocs` script runs no problem.  Now let's modify for our needs.
