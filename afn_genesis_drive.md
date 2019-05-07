@@ -73,3 +73,90 @@ I'm using rsync to sync the stuff back to the USB drive on the host.
 
 Ok, I've loaded the custom clonezilla.zip on the USB drive.  Their default
 `custom-ocs` script runs no problem.  Now let's modify for our needs.
+
+## 2019-5-7
+
+Talked with John today.  We want one option: "Restore genesis image"
+that restores the image in `/partimag/genesis`.  For development I
+use the clonezilla live shell and edit the script in /tmp and run it.
+Then once the bugs are worked out, I copy it back to the USB drive and
+build the new custom image.  Here's the current custom script:
+
+    tubaman@stark:/media/tubaman/Disk Images/custom$ cat genesis-restore
+    !/bin/bash
+    # Author: Ryan Nowakowski <ryan@fattuba.com>
+    # License: GPL
+    # Ref: http://sourceforge.net/forum/forum.php?thread_id=1759263&forum_id=394751
+    # In this example, it will allow your user to use clonezilla live to restore the image
+
+    # When this script is ready, you can run
+    # ocs-iso -g en_US.UTF-8 -k NONE -s -m ./custom-ocs
+    # to create the iso file for CD/DVD. or
+    # ocs-live-dev -g en_US.UTF-8 -k NONE -s -c -m ./custom-ocs
+    # to create the zip file for USB flash drive.
+
+    # Begin of the scripts:
+    # Load DRBL setting and functions
+    DRBL_SCRIPT_PATH="${DRBL_SCRIPT_PATH:-/usr/share/drbl}"
+
+    . $DRBL_SCRIPT_PATH/sbin/drbl-conf-functions
+    . /etc/drbl/drbl-ocs.conf
+    . $DRBL_SCRIPT_PATH/sbin/ocs-functions
+
+    # load the setting for clonezilla live.
+    [ -e /etc/ocs/ocs-live.conf ] && . /etc/ocs/ocs-live.conf
+    # Load language files. For English, use "en_US.UTF-8".
+    ask_and_load_lang_set en_US.UTF-8
+
+    # The above is almost necessary, it is recommended to include them in your own custom-ocs.
+    # From here, you can write your own scripts.
+
+
+    action_restore() {
+      mkdir -p /tmp/ocsroot_bind_root
+      mkdir -p $ocsroot
+      if ! mountpoint $ocsroot &>/dev/null; then
+        mount -o noatime,nodiratime /dev/disk/by-label/Disk\\x20Images  /tmp/ocsroot_bind_root
+        mount --bind -o noatime,nodiratime /tmp/ocsroot_bind_root/partimag $ocsroot
+      fi
+      if mountpoint $ocsroot &>/dev/null; then
+        # If you want to run it in batch mode, add option "-b" in the ocs-sr command
+        # For more options about ocs-sr, run "ocs-sr -h"
+        ocs-sr -q2 -c -j2 -z1 -i 4096 -sfsck -senc -p choose restoredisk genesis sda
+      else
+        [ "$BOOTUP" = "color" ] && $SETCOLOR_FAILURE
+        echo "Fail to mount /partimag in /dev/disk/by-label/Disk Images as $ocsroot!"
+        echo "Program terminated!"
+        [ "$BOOTUP" = "color" ] && $SETCOLOR_NORMAL
+      fi
+      umount $ocsroot &>/dev/null
+      umount /tmp/ocsroot_bind_root &>/dev/null
+    }
+
+    ##################
+    ###### MAIN ######
+    ##################
+
+    TMP="$(mktemp /tmp/menu.XXXXXX)"
+    trap "[ -f "$TMP" ] && rm -f $TMP" HUP INT QUIT TERM EXIT
+    $DIA --backtitle "$msg_nchc_free_software_labs" --title  \
+    "$msg_nchc_clonezilla" --menu "$msg_choose_mode:" \
+    0 0 0 \
+    "Restore" "Restore genesis image" \
+    2> $TMP
+    mode="$(cat $TMP)"
+    [ -f "$TMP" ] && rm -f $TMP
+
+    #
+    case "$mode" in
+      Restore)
+        action_restore;;
+      *)
+        [ "$BOOTUP" = "color" ] && $SETCOLOR_FAILURE
+        echo "Program terminated!"
+        [ "$BOOTUP" = "color" ] && $SETCOLOR_NORMAL
+        exit 1
+    esac
+
+John says the host hard drive always comes up as /dev/sda so let's switch our
+script to that.
