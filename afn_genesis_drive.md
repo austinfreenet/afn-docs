@@ -160,3 +160,23 @@ build the new custom image.  Here's the current custom script:
 
 John says the host hard drive always comes up as /dev/sda so let's switch our
 script to that.
+
+## 2019-5-14
+
+Let's set the timeout for the genesis grub screen to be 5 sec instead of 30.
+Trying [this](https://sourceforge.net/p/clonezilla/discussion/Clonezilla_live/thread/236b1196/#41a3).
+
+Aside: Here's another way of customizing clonezilla live: [changing the boot parameters](https://clonezilla.org/fine-print-live-doc.php?path=./clonezilla-live/doc/99_Misc/00_live-boot-parameters.doc).  I think this is what we did a few years ago to customize clonezilla.
+
+Well the link above works but only after you re-run grub to install it on the
+USB MBR.  So here's the full procedure to adjust the boot menu timeout:
+
+1. Create a custom `clonezilla-live-*.zip` by running the `ocs-live-dev` command
+   documented above.
+2. unzip the boot config files: `unzip clonezilla-live-20190514.zip boot/grub/grub.cfg syslinux/syslinux.cfg`
+3. edit the boot config files to change the timeout.  Note: syslinux.cfg timeout
+   is in 10ths of a second.
+4. Update the zip with those newly edited boot config files: `zip --update
+   clonezilla-live-20190514.zip boot/grub/grub.cfg syslinux/syslinux.cfg`
+5. Install the zip on the USB drive.  Note: you can't just run unzip.  You need
+   to use a tool(ex: tuxboot) that will reinstall grub to the MBR of the USB.
