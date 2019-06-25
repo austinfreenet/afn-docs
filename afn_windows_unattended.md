@@ -43,3 +43,9 @@ following [this guide](https://www.windowscentral.com/how-create-unattended-medi
 
 I'm unable to select distribution share.  I'm restarting the program.  I had to
 follow [this doc](https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/wsim/create-or-open-a-distribution-share#create-a-distribution-share-using-windowssim) to create the distribution share.  Now I'm creating the answer file.  Ok, now we're [defining the product key](https://www.windowscentral.com/how-create-unattended-media-do-automated-installation-windows-10#definning_productkey).  I've saved the answer file.  Now I need to create the USB install media.
+
+## 2019-6-25
+
+I've got this new personal laptop so I need to copy over the Win10 VM from my
+old laptop.  I'm going to copy over the iso and key from stark then bring it up
+on libvirt instead of virtualbox.
