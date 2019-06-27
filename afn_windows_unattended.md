@@ -49,3 +49,11 @@ follow [this doc](https://docs.microsoft.com/en-us/windows-hardware/customize/de
 I've got this new personal laptop so I need to copy over the Win10 VM from my
 old laptop.  I'm going to copy over the iso and key from stark then bring it up
 on libvirt instead of virtualbox.
+
+## 2019-6-26
+
+What about using bash for Windows do run isconf?  Can we run Windows .exe's from
+bash?  It looks like [you can](https://www.howtogeek.com/285082/how-to-run-windows-programs-from-windows-10s-bash-shell/).
+
+Ok so I'm up and runnng with a win10 KVM guest using notes from the [nextgen
+project](./afn_nextgen_project.md).   Now I'm installing the [virtio drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html#virtio-win-direct-downloads).
