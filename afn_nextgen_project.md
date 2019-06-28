@@ -850,7 +850,7 @@ Now we need to test:
 ## 2019-6-27
 
 I'm playing around with this again on my new personal laptop since I need a
-win10 VM for [automated windows install](./afn_windows_unattended) anyway.
+win10 VM for [automated windows install](./afn_windows_unattended.md) anyway.
 Ok so [these](https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe) are the spice tools I'm installing on the win10
 guest.  Now the guest resolution automatically adjusts to the host virt-manager
 window!
