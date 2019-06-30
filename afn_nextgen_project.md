@@ -858,3 +858,7 @@ window!
 I've installed the [spice webdavd](https://www.spice-space.org/download/windows/spice-webdavd/)
 for [folder sharing between host and guest](https://www.spice-space.org/spice-user-manual.html#_folder_sharing). Now I'm trying [this](http://nts.strzibny.name/how-to-set-up-shared-folders-in-virt-manager/)
 to see if I can get it to work.  Now I'm trying [this](https://www.guyrutenberg.com/2018/10/25/sharing-a-folder-a-windows-guest-under-virt-manager/).  No-go.  I'm getting `The network name cannot be found`.  I'll probably bail and just setup Samba on the host.
+
+## 2019-6-30
+
+We should [try the bridge helper](https://blog.wikichoon.com/2016/01/qemusystem-vs-qemusession.html?m=1).
