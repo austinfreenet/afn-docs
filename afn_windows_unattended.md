@@ -57,3 +57,8 @@ bash?  It looks like [you can](https://www.howtogeek.com/285082/how-to-run-windo
 
 Ok so I'm up and runnng with a win10 KVM guest using notes from the [nextgen
 project](./afn_nextgen_project.md).   Now I'm installing the [virtio drivers](https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html#virtio-win-direct-downloads).
+
+## 2019-7-9
+
+I'm rerunning the install of the Windows Assessment and Deployment Kit that we
+did back on [2019-4-1](#2019-4-01).

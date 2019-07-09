@@ -862,3 +862,18 @@ to see if I can get it to work.  Now I'm trying [this](https://www.guyrutenberg.
 ## 2019-6-30
 
 We should [try the bridge helper](https://blog.wikichoon.com/2016/01/qemusystem-vs-qemusession.html?m=1).
+
+## 2019-7-9
+
+Wow, this could still work.  [PCI passthrough with KVM](https://www.jupiterbroadcasting.com/132466/the-one-about-gpu-passthrough-linux-unplugged-308/) is a thing now.
+
+Trying to replace the user-mode networking with the [bridged network](https://jonaspfannschmidt.com/libvirt_session.html).  Ok that
+seems to work.  I got virbr0 going on qemu://system and am bridge to
+that using the bridge helper now.  I've also setup samba locally and
+can reach my home dir on the host using `\\potts\tubaman`.  I had to set my smb
+password using `sudo smbpasswd -a tubaman`.
+
+I tried switch video to virtio but it ruined my display scaling.  Going back
+to QXL.  I've mapped `\\potts\tubaman` to the Z: drive and set it to
+autoreconnect at boot.  I'll probably want to map Documents, Pictures, etc to
+those directories in my host Linux home dir.
