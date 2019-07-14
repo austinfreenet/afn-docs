@@ -62,3 +62,28 @@ project](./afn_nextgen_project.md).   Now I'm installing the [virtio drivers](ht
 
 I'm rerunning the install of the Windows Assessment and Deployment Kit that we
 did back on [2019-4-1](#2019-4-01).
+
+## 2019-7-13
+
+Having trouble setting up answer file environment.  Getting can't find catalog.
+Maybe it's because files are on samba share.  Copying files from host to guest.
+Ok, now it's generating the catalog just fine.
+
+I've created a distribution share in
+`~/Downloads/windows_unattended_project/Distribution` on the host.  Apparently
+accessing a distribution over the network is fine.  Next I need to create the
+answer file.
+
+Ok so I'm at the point where I need to pick UEFI or BIOS.  Waiting for John to
+let me know.  My Win10 guest VM is running in BIOS mode currently.
+
+## 2019-7-14
+
+From John:
+
+    The desktops are still running in legacy mode.  I'm seeing an
+    increasing number of non-desktop models running UEFI exclusively -
+    laptops and tablets, primarily.
+
+    I'm approaching the point where I may need to jump the gap and go
+    exclusively UEFI.
