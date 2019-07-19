@@ -4,7 +4,8 @@ HTML=$(MARKDOWN:%.md=%.html)
 all: $(HTML)
 
 %.html: %.md
-	pandoc -i $< -o $@
+	TITLE=$$(head $< | grep "^# " | sed 's/# //'); \
+	pandoc --metadata=pagetitle:"$$TITLE" --standalone -i $< -o $@
 
 clean:
 	rm -f $(HTML)
