@@ -87,3 +87,7 @@ From John:
 
     I'm approaching the point where I may need to jump the gap and go
     exclusively UEFI.
+
+## 2019-7-19
+
+Let's use BIOS for now then.
