@@ -200,3 +200,12 @@ guest has booted.  I've created a new guest under qemu://system.  We can use
 that to [test the USB drive](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.en.html#index5h1).
 
 USB uses syslinux as the boot loader so we need to edit /syslinux/syslinux.cfg.
+
+Now we have [a script](./afn_genesis_drive/clonezilla_live_to_genesis.sh)
+to turn a default clonzilla live USB drive into a genesis drive:
+
+    ./clonezilla_live_to_genesis.sh /dev/sdb
+
+I'm trying to use /home/partimage/genesis as the default image.
+
+Here's how to [preseed options for restore](https://clonezilla.org/show-live-doc-content.php?topic=clonezilla-live/doc/05_Preseed_options_to_do_job_after_booting).

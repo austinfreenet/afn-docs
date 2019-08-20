@@ -23,3 +23,9 @@ this drive isn't labeled GENESISDRV" >&2; exit 3; }
 echo "mounting filesystem using GIO(gvfs)"
 MOUNTPOINT=$(gio mount --device=$PART | awk '{ print $4 }')
 test -z "$MOUNTPOINT" && { echo "error: failed find mountpoint" >&2; exit 3; }
+
+echo "customizing bootloader(syslinux) menu"
+cp syslinux.cfg $MOUNTPOINT/syslinux/syslinux.cfg
+
+echo "unmounting $MOUNTPOINT"
+gio mount -u $MOUNTPOINT
