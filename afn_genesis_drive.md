@@ -180,3 +180,23 @@ USB MBR.  So here's the full procedure to adjust the boot menu timeout:
    clonezilla-live-20190514.zip boot/grub/grub.cfg syslinux/syslinux.cfg`
 5. Install the zip on the USB drive.  Note: you can't just run unzip.  You need
    to use a tool(ex: tuxboot) that will reinstall grub to the MBR of the USB.
+
+## 2019-8-20
+
+John says the genesis drive isn't working.  Ok I think I'm going to fix
+this issue buy just customizing the boot params instead of doing the
+whole custom clonezilla image.
+
+Also I don't like tuxboot so let's try the [manual install](https://clonezilla.org/liveusb.php#linux-method-b) method.  I've created [a script](./afn_genesis_drive/flash_clonezilla_live_to_usb.sh) that you can run like this:
+
+    ./flash_clonezilla_live_to_usb.sh ~/Downloads/clonezilla-live-2.6.2-15-amd64.zip /dev/sdb
+
+Let's testing using virt-manager(kvm).  We can [passthrough a USB host
+device](https://www.linux-kvm.org/page/USB_Host_Device_Assigned_to_Guest).
+It looks like [we can't using USB Host devices with
+qemu://session](https://bugzilla.redhat.com/show_bug.cgi?id=1437941l).
+Maybe USB Spice redirection will work.  Nope that only works once the
+guest has booted.  I've created a new guest under qemu://system.  We can use
+that to [test the USB drive](https://tails.boum.org/doc/advanced_topics/virtualization/virt-manager/index.en.html#index5h1).
+
+USB uses syslinux as the boot loader so we need to edit /syslinux/syslinux.cfg.
