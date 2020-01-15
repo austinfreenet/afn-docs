@@ -46,3 +46,11 @@ up](https://www.theurbanpenguin.com/pxelinux-using-proxy-dhcp/).
 Now I've got a pxelinux menu coming up.  Next I need to [generate a WinPE
 image](https://ahmermansoor.blogspot.com/2018/11/configure-centos-7-pxe-server-install-windows-10.html)
 to boot from.
+
+## 2020-1-14
+
+I found [this guide](https://github.com/thurstylark/win-netinstall) that seems
+to contain all the steps for netinstalling Win10.
+
+This might be a [point-n-click](https://www.aioboot.com/en/about/) option to get
+a PXE server up and running.
