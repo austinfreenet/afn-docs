@@ -54,3 +54,37 @@ to contain all the steps for netinstalling Win10.
 
 This might be a [point-n-click](https://www.aioboot.com/en/about/) option to get
 a PXE server up and running.
+
+## 2020-2-4
+
+Wow!  [This](https://docs.j7k6.org/windows-10-pxe-installation/) looks
+super simple and straight forward.  Let's try it.  I'm not sure where the
+Raspberry Pi is so I'll just do this from my laptop for now.  tftpd-hpa is
+already installed.  I need to remember to shut it off after the fact.
+I'm following the [prereq](https://docs.j7k6.org/raspberry-pi-pxe-server/)
+now on my laptop.
+
+I've temporarily [disabled dnsmasq from
+NetworkManager](https://askubuntu.com/a/233223) to make it easy to run
+my own.
+
+So dnsmasq has it's own little tftp server so removing tftpd-hpa.
+
+Ok so proxydhcp starts now: `systemctl start dnsmasq.service` and runs alongside
+the dnsmasq that NetworkManager runs.  I've figured out how to [enable PXE
+boot](https://www.dell.com/community/Desktops-General-Read-Only/UEFI-PXE-boot-not-available-in-OptiPlex-9020-AIO-A09-for-Win7/td-p/4485207).  Forgot to symlink memdisk.  Now that that's done, winPE boots!  Now let's try to do the net use and setup.exe stuff.
+
+So there are no network interfaces when I run `ipconfig /all`.  It's probably a
+driver issue.  Let's try to use the winpe.iso Patrick created.  That boots and
+has network!  However it says can't run setup.exe because the version isn't
+compatible with the version of Windows we're running.
+
+Patrick regenerated the winpe.iso for x64 and not it works and setup
+is running!
+
+Note: We'll need to script the IP range of the proxydhcp server so that it will
+work in any DHCP environment.
+
+As an aside I ran `mkwinpeimg --iso --windows-dir=/home/tubaman/.gvfs/smb-share:server=taradinas.plni.info,share=boot /tmp/winpe_win10.iso` which may have created a network-enabled winpe image also.  We may want to test that later.
+
+Next we need to move this from my laptop to the Pi.
