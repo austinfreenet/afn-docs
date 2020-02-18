@@ -88,3 +88,9 @@ work in any DHCP environment.
 As an aside I ran `mkwinpeimg --iso --windows-dir=/home/tubaman/.gvfs/smb-share:server=taradinas.plni.info,share=boot /tmp/winpe_win10.iso` which may have created a network-enabled winpe image also.  We may want to test that later.
 
 Next we need to move this from my laptop to the Pi.
+
+## 2020-2-18
+
+With Patrick's help I'm copying all the config from /etc/dnsmasq.d and /srv/tftp
+to the Raspberry Pi.  I've also enabled ssh on the Pi to help with
+debugging.
