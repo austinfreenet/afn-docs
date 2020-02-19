@@ -94,3 +94,6 @@ Next we need to move this from my laptop to the Pi.
 With Patrick's help I'm copying all the config from /etc/dnsmasq.d and /srv/tftp
 to the Raspberry Pi.  I've also enabled ssh on the Pi to help with
 debugging.
+
+Note: the dnsmasq config file on the Pi in actually `/etc/dnsmasq.conf` *not*
+`/etc/dnsmasq.d/*`.
