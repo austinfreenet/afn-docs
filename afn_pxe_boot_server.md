@@ -97,3 +97,70 @@ debugging.
 
 Note: the dnsmasq config file on the Pi in actually `/etc/dnsmasq.conf` *not*
 `/etc/dnsmasq.d/*`.
+
+## 2020-3-3
+
+John and Patrick want to be able to PXEboot from UEFI because some new Dells
+can only boot UEFI.  Note: Legacy BIOS PXEboot works.  Trying to tcpdump on the
+Pi to see how the requests are different.  I port scanned looking for the Pi:
+
+    sudo nmap -p 22 192.168.10.0/24
+
+Found it at 192.168.10.192.  ssh'd in.  `apt-get install tcpdump`.  I see the
+ports that dnsmasq is listening on:
+
+    pi@pxeboot-server:~ $ sudo netstat -anp | grep dnsm
+    udp        0      0 0.0.0.0:4011            0.0.0.0:*                           1571/dnsmasq
+    udp        0      0 0.0.0.0:67              0.0.0.0:*                           1571/dnsmasq
+    udp        0      0 0.0.0.0:69              0.0.0.0:*                           1571/dnsmasq
+    udp6       0      0 :::69                   :::*                                1571/dnsmasq
+    unix  2      [ ]         DGRAM                    19335    1571/dnsmasq
+
+Let's capture tcpdump on those ports.
+
+    sudo tcpdump -i eth0 -w uefi_pxeboot_new_config5.pcap port 67 or port 68 or port 69 or port 4011
+
+So it seems like based on the pcaps that the UEFI boot
+is making it to tftp and then bailing.  There's [some
+indication](https://ressman.org/posts/2018-05-06-pxe-boot-up-boards/)
+that we may need to set the pxe boot server up for UEFI instead of BIOS.
+I'm going to apt-get install syslinux-efi.  So it looks like we now have
+the menu!  Here's a snapshot of the proxy dhcp config:
+
+    pi@pxeboot-server:~ $ cat /etc/dnsmasq.conf
+    port=0
+    interface=eth0
+    dhcp-range=192.168.10.0,proxy,255.255.255.0
+    dhcp-match=set:X86-64_EFI,option:client-arch,6
+    dhcp-match=set:X86-64_EFI,option:client-arch,7
+    dhcp-match=set:X86-64_EFI,option:client-arch,9
+    dhcp-boot=tag:x86PC,pxelinux.0
+    dhcp-boot=tag:X86-64_EFI,syslinux.efi
+    pxe-service=x86PC,'PXE(BIOS) Boot Menu',pxelinux
+    pxe-service=X86-64_EFI,'PXE(UEFI) Boot Menu',syslinux.efi
+    enable-tftp
+    tftp-root=/srv/tftp
+
+...and here's a snapshot of the tftp directory:
+
+    pi@pxeboot-server:~ $ find /srv/tftp/ -ls
+       128909      4 drwxr-xr-x   3 root     root         4096 Mar  3 12:29 /srv/tftp/
+       129152      0 lrwxrwxrwx   1 root     root           40 Mar  3 12:28 /srv/tftp/menu.c32 -> /usr/lib/syslinux/modules/efi64/menu.c32
+       129155      0 lrwxrwxrwx   1 root     root           44 Mar  3 12:29 /srv/tftp/libcom32.c32 -> /usr/lib/syslinux/modules/efi64/libcom32.c32
+       129195      0 lrwxrwxrwx   1 root     root           43 Mar  3 12:23 /srv/tftp/ldlinux.e64 -> /usr/lib/syslinux/modules/efi64/ldlinux.e64
+       128915      0 lrwxrwxrwx   1 root     root           28 Feb 18 14:54 /srv/tftp/pxelinux.0 -> /usr/lib/PXELINUX/pxelinux.0
+       129154      0 lrwxrwxrwx   1 root     root           43 Mar  3 12:28 /srv/tftp/libutil.c32 -> /usr/lib/syslinux/modules/efi64/libutil.c32
+       129153      0 lrwxrwxrwx   1 root     root           42 Feb 18 14:54 /srv/tftp/ldlinux.c32 -> /usr/lib/syslinux/modules/bios/ldlinux.c32
+         2842 239596 -rw-r--r--   1 pi       pi       245340160 Feb 18 15:00 /srv/tftp/winpe-patrick-x86.iso
+         2808 305552 -rw-r--r--   1 pi       pi       312879104 Feb 18 15:00 /srv/tftp/winpe.iso
+         2821 136044 -rw-r--r--   1 pi       pi       139302912 Feb 18 15:00 /srv/tftp/winpe_no-net.iso
+       129194      0 lrwxrwxrwx   1 root     root            40 Mar  3 12:04 /srv/tftp/syslinux.efi -> /usr/lib/SYSLINUX.EFI/efi64/syslinux.efi
+       129157      0 lrwxrwxrwx   1 root     root            25 Feb 18 14:55 /srv/tftp/memdisk -> /usr/lib/syslinux/memdisk
+       129159      4 drwxr-xr-x   2 root     root          4096 Feb 18 14:55 /srv/tftp/pxelinux.cfg
+         2804      4 -rw-r--r--   1 pi       pi             134 Feb 18 14:55 /srv/tftp/pxelinux.cfg/default
+
+Note that we probably broke BIOS PXE when getting UEFI to boot.
+
+When clicking the "Windows 10" PXE menu, it start to load winpe.iso but
+then spontaneously reboots.  We probably need a `winpe.iso` that's UEFI boot
+enabled.
