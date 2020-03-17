@@ -164,3 +164,35 @@ Note that we probably broke BIOS PXE when getting UEFI to boot.
 When clicking the "Windows 10" PXE menu, it start to load winpe.iso but
 then spontaneously reboots.  We probably need a `winpe.iso` that's UEFI boot
 enabled.
+
+## 2020-3-17
+
+Let's work on the winpe.iso boot problem.  I've changed `pxelinux.cfg/default`
+from [`APPEND iso raw` to `APPEND iso`](https://www.syslinux.org/archives/2011-August/017109.html).  That didn't work.
+
+I'm tcpdumping like this now:
+
+    ssh afn-pxe sudo tcpdump -i eth0 -U -w - port 67 or port 68 or port 69 or port 4011 > /tmp/pxe.pcap
+
+I'm trying our other winpe images to see if they all exhibit the same behavior.
+Yup, they do.  I've double-checked that secure boot is off.
+
+Ok some there's [some indication](https://wiki.archlinux.org/index.php/Windows_PE#From_Network) that pxelinux doesn't support uefi.  Let's try iPXE.  Well, the pxelinux docs suggest that [UEFI should be possible](https://wiki.syslinux.org/wiki/index.php?title=PXELINUX#UEFI).  Let' exhaust those options before
+pivoting.  Ok, google turned up nothing.  Let's try iPXE.
+
+Also it looks like the winpe isos haven't been update on the Pi since Feb 18th:
+
+    pi@pxeboot-server:/srv/tftp $ ls -ltrh *.iso
+    -rw-r--r-- 1 pi pi 299M Feb 18 15:00 winpe.iso
+    -rw-r--r-- 1 pi pi 133M Feb 18 15:00 winpe_no-net.iso
+    -rw-r--r-- 1 pi pi 234M Feb 18 15:00 winpe-patrick-x86.iso
+
+Here's the current md5sum:
+
+    pi@pxeboot-server:/srv/tftp $ md5sum winpe.iso
+    a3a406bca4733dc4980c663ec444b06f  winpe.iso
+
+Does that hash match the winpe.iso that we expect to be on the Pi?
+
+Another idea: perhaps we can try to replicate the procedure [specified by
+Microsoft](https://docs.microsoft.com/en-us/windows/deployment/configure-a-pxe-server-to-load-windows-pe#pxe-boot-process-summary)?
